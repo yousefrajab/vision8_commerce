@@ -8,13 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
-
+    // protected $guarded =[];
+    //$guarded =[]; => من الحقول الممنوعة
+    protected $fillable =['name','image','parent_id'];
+//$fillable => مين الحقول المسموحة
     public function parent()
     {
         return $this->belongsTo(Category::class , 'parent_id')->withDefault();
     }
 
-    public function cildren()
+    public function children()
     {
         return $this->hasMany(Category::class , 'parent_id');
     }

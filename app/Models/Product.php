@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Traits\Trans;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory ,Trans ;
+    protected $guarded = [];
 
     public function category( )
     {
@@ -28,5 +30,11 @@ class Product extends Model
     {
         return $this->hasMany(OrderItem::class);
     }
+// عرض المنتج مع صورو
+    public function album()
+    {
+        return $this->hasMany(Image::class);
+    }
+
 
 }

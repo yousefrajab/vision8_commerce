@@ -12,12 +12,16 @@
 @csrf
 <div class="mb-3">
     <label>English Name</label>
-    <input type="text" placeholder="English Name" name="name_en" class="form-control" />
+    <input type="text" placeholder="English Name" name="name_en" class="form-control"  />
 </div>
 <div class="mb-3">
     <label>Arabic Name</label>
     <input type="text" placeholder="Arabic Name" name="name_ar" class="form-control" />
 </div>
+{{-- <div class="mb-3"> --}}
+    {{-- <label>Farench Name</label>
+    <input type="text" placeholder="Farench Name" name="name_fr" class="form-control" /> --}}
+{{-- </div> --}}
 <div class="mb-3">
     <label for="image">Image</label>
     {{-- <label for="image"><img src="https://placekitten.com/120" alt=""></label> --}}
@@ -30,7 +34,7 @@
        <option value="">Select</option>
        @foreach ($categories as $category )
         <option value="{{ $category->id }}
-            ">{{ $category->name }}</option>
+            ">{{ $category->trans_name }}</option>
         @endforeach
     </select>
 </div>

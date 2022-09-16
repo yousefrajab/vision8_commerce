@@ -16,7 +16,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories =Category::orderbydesc('id')->paginate(10);
+        $categories =Category::with('parent')->orderbydesc('id')->paginate(5);
+        // dd($categories);
+        //with('parent') => عشان ما =يستهلك كثير وقت بالsql
         return view('Admin.categories.index' ,compact('categories'));
     }
 
@@ -43,15 +45,23 @@ class CategoryController extends Controller
         $request->validate([
             'name_en'=>'required',
             'name_ar'=>'required',
+            // 'name_fr'=>'required',
             'image'=>'required',
-            'parent_id'=>'nullable|exists:categories,id',
+            'parent_id'=>'nullable|exists:categories,id'
         ]);
         //Upload File
         $img_name = rand().time(). $request->file('image')->getClientOriginalName();
         $request->file('image')->move(public_path('uploads/categories/'),$img_name);
+
+        //convert name to json
+        $name = json_encode([
+            'en'=> $request->name_en,
+            'ar'=> $request->name_ar,
+            // 'fr'=> $request->name_fr,
+        ], JSON_UNESCAPED_UNICODE);
         //Insert to Database
         Category::create([
-            'name'=>$request->name_en .' '.$request->name_ar,
+            'name'=>$name,
             'image'=>$img_name,
             'parent_id'=>$request->parent_id
         ]);
@@ -97,6 +107,7 @@ class CategoryController extends Controller
         $request->validate([
             'name_en'=>'required',
             'name_ar'=>'required',
+            // 'name_fr'=>'required',
             'parent_id'=>'nullable|exists:categories,id',
         ]);
 
@@ -108,9 +119,15 @@ class CategoryController extends Controller
         $img_name = rand().time(). $request->file('image')->getClientOriginalName();
         $request->file('image')->move(public_path('uploads/categories/'),$img_name);
       }
+
+      $name = json_encode([
+        'en'=> $request->name_en,
+        'ar'=> $request->name_ar,
+        // 'fr'=> $request->name_fr,
+    ], JSON_UNESCAPED_UNICODE);
         //Insert to Database
        $category->update([
-            'name'=>$request->name_en .' '.$request->name_ar,
+            'name'=>$name,
             'image'=>$img_name,
             'parent_id'=>$request->parent_id
         ]);
@@ -132,6 +149,6 @@ class CategoryController extends Controller
        // Category::where('parent_id',$category->id)->update(['parent_id'=>null]);
       $category->children()->update(['parent_id'=>null]);
         $category->delete();
-        return redirect()->route('admin.categories.index')->with('msg','Category deleted successully')->with('type','danger');
+        return redirect()->route('admin.categories.index')->with('msgg','Category deleted successully')->with('type','danger');
     }
 }

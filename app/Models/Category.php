@@ -1,13 +1,14 @@
 <?php
-
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Traits\Trans;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Category extends Model
 {
-    use HasFactory;
+    use HasFactory , Trans;
     // protected $guarded =[];
     //$guarded =[]; => من الحقول الممنوعة
     protected $fillable =['name','image','parent_id'];
@@ -25,4 +26,7 @@ class Category extends Model
     {
         return $this->hasMany(Product::class  );
     }
+
+
+
 }

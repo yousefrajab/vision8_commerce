@@ -39,6 +39,7 @@ use App\Models\Category;
     <link rel="stylesheet" href="{{ asset('siteass/plugins/slick/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('siteass/plugins/slick/slick-theme.css') }}">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="{{ asset('siteass/css/style.css') }}">
 
@@ -58,7 +59,7 @@ use App\Models\Category;
                             <span>0592611538</span>
                         </a>
                         <a href="mailto:yousefrajab2018@gmail.com">
-                            <i class="tf-ion-ios-mail"></i>
+                            <i class="fas fa-envelope"></i>
                             <mark>yousefrajab2018@gmail.com</mark>
                         </a>
                     </div>

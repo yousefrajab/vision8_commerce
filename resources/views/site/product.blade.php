@@ -110,7 +110,7 @@
                         </div>
                     @endif
                     <div class="single-product-details">
-                        @php $rating = $product->reviews->avg('star') ;@endphp
+                        @php $rating = round($product->reviews->avg('star'), 2) ;@endphp
                         <h2>{{ $product->trans_name }}</h2>
                         <small>{{ $rating }}
                             <i class="tf-ion-star"></i> @php echo "|" @endphp

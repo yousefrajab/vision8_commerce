@@ -116,6 +116,7 @@ class CategoryController extends Controller
         $img_name = $category->image;
       if($request->hasFile('image'))
       {
+        File::delete(public_path('uploads/categories/'.$category->image));
         $img_name = rand().time(). $request->file('image')->getClientOriginalName();
         $request->file('image')->move(public_path('uploads/categories/'),$img_name);
       }

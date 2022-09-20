@@ -11,6 +11,7 @@
 <form action="{{ route('admin.categories.update',$category->id) }}" method ="POST" enctype="multipart/form-data">
 @csrf
 @method('put')
+
 <div class="mb-3">
     <label>English Name</label>
     <input type="text" placeholder="English Name" name="name_en" class="form-control" value="{{ $category->name_en }}" />

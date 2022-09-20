@@ -1,7 +1,7 @@
 @extends('Admin.master')
 @section('title', 'Product | ' . env('APP_NAME'))
 @section('content')
-    <h1 class="h3 mb-4 text-gray-800">All Products</h1>
+    <h1 class="h3 mb-4 text-gray-800">{{ __('site.All Products') }}</h1>
     @if (session('msg'))
         <div class="alert alert-{{ session('type') }}">{{ session('msg') }}
         </div>
@@ -30,7 +30,7 @@
                     <td>{{ $product->price }}</td>
                     <td>{{ $product->sale_price }}</td>
                     <td>{{ $product->quantity }}</td>
-                    <td>{{ $product->category_id }}</td>
+                    <td>{{ $product->category->trans_name }}</td>
                     <td>{{ $product->created_at ? $product->created_at->diffForHumans() : '' }}</td>
                     <td>
                         <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-sm btn-primary"><i

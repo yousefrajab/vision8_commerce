@@ -39,8 +39,8 @@
         <div id="collapsCategory" class="collapse {{ str_contains(request()->url(),'categories') ? 'show' :'' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
-                <a class="collapse-item {{ request()->routeIs('admin.categories.index')? 'active': '' }}" href="{{ route('admin.categories.index') }}">All Categories</a>
-                <a class="collapse-item {{ request()->routeIs('admin.categories.create')? 'active': '' }}" href="{{ route('admin.categories.create') }}">Add New</a>
+                <a class="collapse-item {{ request()->routeIs('admin.categories.index')? 'active': '' }}" href="{{ route('admin.categories.index') }}">{{ __('site.All Categories') }}</a>
+                <a class="collapse-item {{ request()->routeIs('admin.categories.create')? 'active': '' }}" href="{{ route('admin.categories.create') }}">{{ __('site.Add New Category') }}</a>
             </div>
         </div>
     </li>
@@ -56,8 +56,8 @@
         <div id="collapseProduct" class="collapse {{ str_contains(request()->url(),'products') ? 'show' :'' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
-                <a class="collapse-item {{ request()->routeIs('admin.products.index')? 'active': '' }}" href="{{ route('admin.products.index') }}">All Products</a>
-                <a class="collapse-item {{ request()->routeIs('admin.products.create')? 'active': '' }}" href="{{ route('admin.products.create') }}">Add New</a>
+                <a class="collapse-item {{ request()->routeIs('admin.products.index')? 'active': '' }}" href="{{ route('admin.products.index') }}">{{ __('site.All Products') }}</a>
+                <a class="collapse-item {{ request()->routeIs('admin.products.create')? 'active': '' }}" href="{{ route('admin.products.create') }}">{{ __('site.Add New Product') }}</a>
             </div>
         </div>
     </li>
@@ -80,8 +80,8 @@
 
     <hr class="sidebar-divider my-0">
 
-    <li class="nav-item">
-        <a class="nav-link" href="index.html">
+    <li class="nav-item {{ request()->routeIs('admin.users.index') ? 'active' : ''}}">
+        <a class="nav-link" href="{{ route('admin.users.index') }}">
             <i class="fas fa-fw fa-users"></i>
             <span>{{ __('site.users') }}</span></a>
     </li>

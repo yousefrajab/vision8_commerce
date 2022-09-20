@@ -1,7 +1,7 @@
 @extends('Admin.master')
 @section('title', 'Category | ' . env('APP_NAME'))
 @section('content')
-    <h1 class="h3 mb-4 text-gray-800">All Categories</h1>
+    <h1 class="h3 mb-4 text-gray-800">{{ __('site.All Categories') }}</h1>
     @if (session('msg'))
         <div class="alert alert-{{ session('type') }}">{{ session('msg') }}
         </div>
@@ -21,6 +21,7 @@
             @foreach ($categories as $category)
 
             {{-- @dump(json_decode($category->name ,true)[app()->currentLocale()]) --}}
+            {{-- //true=> هل يحول المصفوفة ل اسييتيف  --}}
                 <tr>
 
                     <td>{{ $category->id }}</td>

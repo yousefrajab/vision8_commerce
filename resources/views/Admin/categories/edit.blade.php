@@ -1,7 +1,7 @@
 @extends('Admin.master')
 @section('title', 'Edit Category | ' . env('APP_NAME'))
 @section('content')
-    <h1 class="h3 mb-4 text-gray-800">Edit Category</h1>
+    <h1 class="h3 mb-4 text-gray-800">{{ __('site.Edit Category') }}</h1>
     @if (session('msg'))
         <div class="alert alert-{{ session('type') }}">{{ session('msg') }}
         </div>
@@ -32,7 +32,7 @@
 </div>
 <div class="mb-3">
     <label>Parent</label>
-    <select name="parent_id" class="form-control">
+    <select name="parent_id" class="form-control" class="px-5">
        <option value="">Select</option>
        @foreach ($categories as $item )
         <option {{ $category->parent_id == $item->id ? 'selected' :  ''  }} value="{{ $item->id }}
@@ -41,7 +41,7 @@
     </select>
 </div>
 <div class="text-center mb-3">
-    <button class="btn btn-success px-5">Update</button>
+    <button class="btn btn-success btn-hover mt-3">Update</button>
 </div>
 
 </form>

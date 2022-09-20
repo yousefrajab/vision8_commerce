@@ -6,34 +6,43 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DropZoneController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\SiteController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
-    Route::prefix(LaravelLocalization::setLocale())->group(function(){
-	Route::prefix('admin')->name('admin.')->middleware('auth' ,'user_type' ,'verified')->group(function() {
-        Route::get('/',[AdminController::class , 'index'])->name ('index');
-         route::resource('categories',CategoryController::class );
-         route::resource('products',ProductController::class );
-
-
-
+Route::prefix(LaravelLocalization::setLocale())->group(function () {
+    Route::prefix('admin')->name('admin.')->middleware('auth', 'user_type', 'verified')->group(function () {
+        Route::get('/', [AdminController::class, 'index'])->name('index');
+        route::resource('categories', CategoryController::class);
+        route::resource('products', ProductController::class);
+        Route::get('
+         delete-image/{id}', [ProductController::class, 'delete_image'])->name('products.delete_image');
+        route::get('users', [UserController::class, 'index'])->name('users.index');
+        route::delete('users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
     });
-    });
+    Auth::routes(['verify' => true]);
 
-Auth::routes(['verify'=> true]);
+    // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::view('no-access', 'no_access');
 
-Route::view('no-access','no_access');
+    route::get('/', [SiteController::class, 'index'])->name('site.index');
+    route::get('/about', [SiteController::class, 'about'])->name('site.about');
+    route::get('/shop', [SiteController::class, 'shop'])->name('site.shop');
+    route::get('/contact', [SiteController::class, 'contact'])->name('site.contact');
+    route::get('/category/{id}', [SiteController::class, 'category'])->name('site.category');
+    route::get('/search', [SiteController::class, 'search'])->name('site.search');
+    route::get('/product/{slug}', [SiteController::class, 'product'])->name('site.product');
+    route::post('/product/{slug}/review', [SiteController::class, 'product_review'])->name('site.product_review');
+    route::post('/add-to-cart', [CartController::class, 'add_to_cart'])->name('site.add_to_cart');
 
+});
 
-//sitroutes
-
-route::get('/',function(){
-    return 'home';
-})->name('site.index');
 
 //dropzone
-Route::get('/dropzone',[DropZoneController::class,'dropzone']);
-Route::post('/dropzone-store',[DropZoneController::class,'dropzoneStore'])->name('dropzone.store');
+Route::get('/dropzone', [DropZoneController::class, 'dropzone']);
+Route::post('/dropzone-store', [DropZoneController::class, 'dropzoneStore'])->name('dropzone.store');
 
+//sitroutes

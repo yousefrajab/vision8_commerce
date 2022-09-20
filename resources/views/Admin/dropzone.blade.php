@@ -40,7 +40,7 @@
                                 class="dropzone dz-clickable" id="image-upload">
                                 @csrf
                                 <div>
-                                    <h3 class="text-center ">Upload Image by Click on Box</h3>
+                                    <h3 class="text-center "> Upload Image by Click on Box</h3>
                                 </div>
                                 <div class="dz-default dz-message "><span>Drop files here to upload</span></div>
                             </form>

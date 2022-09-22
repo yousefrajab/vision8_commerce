@@ -4,36 +4,43 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
         integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <style>.star-rating{
+    <style>
+        .star-rating {
             font-size: 0;
         }
-        .star-rating__wrap{
+
+        .star-rating__wrap {
             display: inline-block;
             font-size: 1rem;
         }
-        .star-rating__wrap:after{
+
+        .star-rating__wrap:after {
             content: "";
             display: table;
             clear: both;
         }
-        .star-rating__ico{
+
+        .star-rating__ico {
             float: right;
             padding-left: 2px;
             cursor: pointer;
             color: #FFB300;
         }
-        .star-rating__ico:last-child{
+
+        .star-rating__ico:last-child {
             padding-left: 0;
         }
-        .star-rating__input{
+
+        .star-rating__input {
             display: none;
         }
+
         .star-rating__ico:hover:before,
-        .star-rating__ico:hover ~ .star-rating__ico:before,
-        .star-rating__input:checked ~ .star-rating__ico:before
-        {
+        .star-rating__ico:hover~.star-rating__ico:before,
+        .star-rating__input:checked~.star-rating__ico:before {
             content: "\f005";
-        }</style>
+        }
+    </style>
 @stop
 @section('content')
     <section class="single-product">
@@ -106,7 +113,7 @@
                 <div class="col-md-7">
                     @if (session('msg'))
                         <div class="alert alert-success">
-                           {{ session('msg') }}
+                            {{ session('msg') }}
                         </div>
                     @endif
                     <div class="single-product-details">
@@ -116,7 +123,7 @@
                             <i class="tf-ion-star"></i> @php echo "|" @endphp
                             Reviews {{ $product->reviews->count() }}</small>
                         <br>
-                        @foreach (range(1 , 5) as $i)
+                        @foreach (range(1, 5) as $i)
                             <span class="fa-stack" style="width:1em "><i class="far fa-star fa-stack-1x"></i>
                                 @if ($rating > 0)
                                     @if ($rating > 0.5)
@@ -156,28 +163,45 @@
                                 <option>XL</option>
                             </select>
                         </div> --}}
-                     <form action="{{ route('site.add_to_cart') }}" method="POST">
-                        @csrf
-                        <input type="hidden" name="product_id" value="{{ $product->id }}">
-                        <div
-                        class="product-quantity">
-                            <span>Quantity:</span>
-                            <div class="product-quantity-slider">
-                                <input id="product-quantity" type="text" value="1" name="quantity">
+                        <form action="{{ route('site.add_to_cart') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+
+
+                            <div class="product-quantity">
+                                <span>Quantity:</span>
+                                <div class="product-quantity-slider">
+                                    <input id="product-quantity" type="text" value="1" name="quantity"
+                                        style="display: block;" class="form-control">
+                                </div>
                             </div>
-                        </div>
-                        <div class="product-category">
-                            <span>Categories:</span>
-                            <ul>
-                                <li><a
-                                        href="{{  route('site.category', $product->category_id) }}">{{ $product->category->trans_name }}</a>
-                                </li>
 
-                            </ul>
-                        </div>
+                            {{-- <div class="product-quantity">
+                                <span>Quantity:</span>
+                                <div class="product-quantity-slider">
+                                    <div class="input-group bootstrap-touchspin">
+                                        <span class="input-group-btn"><button class="btn btn-default bootstrap-touchspin-down" type="button">-</button>
+                                        </span>
+                                        <span class="input-group-addon bootstrap-touchspin-prefix" style="display: none">
+                                    </span>
+                                        <input id="product-quantity" type="text" value="1" name="product-quantity" class="form-control" style="display: block">
+                                        <span class="input-group-addon bootstrap-touchspin-postfix" style="display: none"></span>
+                                        <span class="input-group-btn"><button class="btn btn-default bootstrap-touchspin-up" type="button">+</button>
+                                        </span></div>
+                                </div>
+                            </div> --}}
+                            <div class="product-category">
+                                <span>Categories:</span>
+                                <ul>
+                                    <li><a
+                                            href="{{ route('site.category', $product->category_id) }}">{{ $product->category->trans_name }}</a>
+                                    </li>
 
-                        <button class="btn btn-main mt-20">Add To Cart</button>
-                    </form>
+                                </ul>
+                            </div>
+
+                            <button class="btn btn-main mt-20">Add To Cart</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -186,7 +210,7 @@
                     <div class="tabCommon mt-20">
                         <ul class="nav nav-tabs">
                             <li class="active"><a data-toggle="tab" href="#details" aria-expanded="true">Details</a></li>
-                            <li class=""><a data-toggle="tab" href="#reviews" aria-expanded="false" >Reviews
+                            <li class=""><a data-toggle="tab" href="#reviews" aria-expanded="false">Reviews
                                     {{ $product->reviews->count() }}</a>
                             </li>
                         </ul>
@@ -234,24 +258,35 @@
                                     </ul>
                                 </div>
                                 <h4>Add New Review</h4>
-                                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-                                <form method="POST" action="{{ route('site.product_review',$product->slug) }}">
+                                <link rel="stylesheet"
+                                    href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+                                <form method="POST" action="{{ route('site.product_review', $product->slug) }}">
                                     @csrf
                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                                     <div class="star-rating">
                                         <div class="star-rating__wrap">
-                                          <input class="star-rating__input" id="star-rating-5" type="radio" name="rating" value="5">
-                                          <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-5" title="5 out of 5 stars"></label>
-                                          <input class="star-rating__input" id="star-rating-4" type="radio" name="rating" value="4">
-                                          <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-4" title="4 out of 5 stars"></label>
-                                          <input class="star-rating__input" id="star-rating-3" type="radio" name="rating" value="3">
-                                          <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-3" title="3 out of 5 stars"></label>
-                                          <input class="star-rating__input" id="star-rating-2" type="radio" name="rating" value="2">
-                                          <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-2" title="2 out of 5 stars"></label>
-                                          <input class="star-rating__input" id="star-rating-1" type="radio" name="rating" value="1">
-                                          <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-1" title="1 out of 5 stars"></label>
+                                            <input class="star-rating__input" id="star-rating-5" type="radio"
+                                                name="rating" value="5">
+                                            <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-5"
+                                                title="5 out of 5 stars"></label>
+                                            <input class="star-rating__input" id="star-rating-4" type="radio"
+                                                name="rating" value="4">
+                                            <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-4"
+                                                title="4 out of 5 stars"></label>
+                                            <input class="star-rating__input" id="star-rating-3" type="radio"
+                                                name="rating" value="3">
+                                            <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-3"
+                                                title="3 out of 5 stars"></label>
+                                            <input class="star-rating__input" id="star-rating-2" type="radio"
+                                                name="rating" value="2">
+                                            <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-2"
+                                                title="2 out of 5 stars"></label>
+                                            <input class="star-rating__input" id="star-rating-1" type="radio"
+                                                name="rating" value="1">
+                                            <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-1"
+                                                title="1 out of 5 stars"></label>
                                         </div>
-                                      </div>
+                                    </div>
                                     <textarea name="comment" class="form-control" rows="5" placeholder="Add Your Comment"></textarea>
                                     <button class="btn btn-main mt-10">Post Review</button>
 
@@ -271,10 +306,10 @@
                 </div>
             </div>
             <div class="row">
-                @foreach ($related as $product )
-                <div class="col-md-3">
-                   @include('site.includes.product')
-                </div>
+                @foreach ($related as $product)
+                    <div class="col-md-3">
+                        @include('site.includes.product')
+                    </div>
                 @endforeach
 
 

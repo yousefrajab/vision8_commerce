@@ -15,8 +15,7 @@
                             <p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">PRODUCTS</p>
                             <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">{{ $item->trans_name }}
                             </h1>
-                            <a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn"
-                                href="{{ route('site.product', $item->slug) }}">Shop Now</a>
+                            {{-- <a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="{{ route('site.product', $item->slug) }}">Shop Now</a> --}}
                         </div>
                     </div>
                 </div>
@@ -88,7 +87,7 @@
             <div class="row">
                 @foreach ($products_latest as $product)
                     <div class="col-md-4">
-                        @include('site.includes.product')
+                        {{-- @include('site.includes.product') --}}
                     </div>
                 @endforeach
 

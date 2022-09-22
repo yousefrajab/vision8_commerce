@@ -1,107 +1,74 @@
 <?php
 namespace App\Traits;
-trait trans{
+
+use Illuminate\Database\Eloquent\Casts\Attribute;
+
+trait Trans
+{
     public function getTransNameAttribute()
     {
-        // dump($this->name);
-        if($this->name){
-            return json_decode($this->name ,true)[app()->currentLocale()];
+        if($this->name) {
+            return json_decode($this->name, true)[app()->currentLocale()];
         }
+
         return $this->name;
-    //    // return json_decode($this->name ,true)[app()->currentLocale()];
-     }
-    // protected function name():Attribute
-    // {
-    //     return Attribute::make(
-    //         get:fn() => json_decode($this->name ,true)[app()->currentLocale()]
-    //     );
-
-    // }
-     public function getNameEnAttribute()
-    {
-        // dump($this->name);
-        if($this->name){
-            return json_decode($this->name ,true)['en'];
-        }
-      return $this->name;
     }
 
-     public function getNameArAttribute()
+    public function getNameEnAttribute()
     {
-        if($this->name){
-            return json_decode($this->name ,true)['ar'];
+        if($this->name) {
+            return json_decode($this->name, true)['en'];
         }
-      return $this->name;
+
+        return $this->name;
     }
-    //  public function getTransNameFrAttribute()
-    // {
-    //     // dump($this->name);
-    //     if($this->name){
-    //         return json_decode($this->name ,true)['fr'];
-    //     }
-    //   return $this->name;
-    // }
 
-    // protected function nameEn():Attribute
-    // {
-    //     return Attribute::make(
-    //         get:fn() => json_decode($this->name ,true)['en']
-    //     );
+    public function getNameArAttribute()
+    {
+        if($this->name) {
+            return json_decode($this->name, true)['ar'];
+        }
 
-    // }
-    // protected function nameAr():Attribute
+        return $this->name;
+    }
+
+    // protected function nameAr(): Attribute
     // {
     //     return Attribute::make(
-    //         get:fn() => json_decode($this->name ,true)['ar']
+    //         get: fn () => json_decode($this->name, true)['ar']
     //     );
-
+    // }
+    // protected function nameEn(): Attribute
+    // {
+    //     return Attribute::make(
+    //         get: fn () => json_decode($this->name, true)['en']
+    //     );
     // }
 
     public function getTransContentAttribute()
     {
-
-        if($this->content){
-            return json_decode($this->content ,true)[app()->currentLocale()];
+        if($this->content) {
+            return json_decode($this->content, true)[app()->currentLocale()];
         }
-      return $this->content;
+
+        return $this->content;
     }
-     public function getTransContentEnAttribute()
+
+    public function getContentEnAttribute()
     {
-        // dump($this->name);
-        if($this->content){
-            return json_decode($this->content ,true)['en'];
+        if($this->content) {
+            return json_decode($this->content, true)['en'];
         }
-      return $this->content;
+
+        return $this->content;
     }
-     public function getTransContentArAttribute()
+
+    public function getContentArAttribute()
     {
-        // dump($this->name);
-        if($this->content){
-            return json_decode($this->content ,true)['ar'];
+        if($this->content) {
+            return json_decode($this->content, true)['ar'];
         }
-      return $this->content;
+
+        return $this->content;
     }
-    //  public function getTransContentFrAttribute()
-    // {
-    //     // dump($this->name);
-    //     if($this->name){
-    //         return json_decode($this->name ,true)['fr'];
-    //     }
-    //   return $this->name;
-    // }
-
-    // protected function ContentEn():Attribute
-    // {
-    //     return Attribute::make(
-    //         get:fn() => json_decode($this->content ,true)['en']
-    //     );
-
-    // }
-    // protected function ContentAr():Attribute
-    // {
-    //     return Attribute::make(
-    //         get:fn() => json_decode($this->content ,true)['ar']
-    //     );
-
-    // }
 }

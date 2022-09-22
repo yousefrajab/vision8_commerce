@@ -30,11 +30,9 @@
        transition: all .3s ease;
        box-shadow: 0 0 10px rgba(0, 0, 0, 0.23);
     }
-
     .album-item a:hover{
 background:#333;
     }
-
 </style>
 @stop
 <div class="row">

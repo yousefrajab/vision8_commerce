@@ -30,4 +30,9 @@ class CartController extends Controller
 
         return redirect()->back()->with('msg', 'Product Add to cart successfully');
     }
+
+    public function cart()
+    {
+        return view('site.cart');
+    }
 }

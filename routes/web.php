@@ -38,6 +38,9 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
     route::post('/product/{slug}/review', [SiteController::class, 'product_review'])->name('site.product_review');
     route::post('/add-to-cart', [CartController::class, 'add_to_cart'])->name('site.add_to_cart');
 
+    Route::get('/cart', [CartController::class, 'cart'])->name('site.cart');
+    Route::get('/checkout', [CartController::class, 'checkout'])->name('site.checkout');
+
 });
 
 

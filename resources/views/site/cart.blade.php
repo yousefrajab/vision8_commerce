@@ -26,58 +26,51 @@
                     <div class="col-md-8 col-md-offset-2">
                         <div class="block">
                             <div class="product-list">
-                                <form method="post">
+                                <form method="post" action="{{ route('site.update_cart') }}">
+
+                                    @csrf
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th class="">Item Name</th>
-                                                <th class="">Item Price</th>
+                                                <th class="">Name</th>
+                                                <th class="">Price</th>
+                                                <th class="">Quantity</th>
+                                                <th class="">Total</th>
                                                 <th class="">Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="">
-                                                <td class="">
-                                                    <div class="product-info">
-                                                        <img width="80" src="images/shop/cart/cart-1.jpg"
-                                                            alt="">
-                                                        <a href="#!">Sunglass</a>
-                                                    </div>
-                                                </td>
-                                                <td class="">$200.00</td>
-                                                <td class="">
-                                                    <a class="product-remove" href="#!">Remove</a>
-                                                </td>
-                                            </tr>
-                                            <tr class="">
-                                                <td class="">
-                                                    <div class="product-info">
-                                                        <img width="80" src="images/shop/cart/cart-2.jpg"
-                                                            alt="">
-                                                        <a href="#!">Airspace</a>
-                                                    </div>
-                                                </td>
-                                                <td class="">$200.00</td>
-                                                <td class="">
-                                                    <a class="product-remove" href="#!">Remove</a>
-                                                </td>
-                                            </tr>
-                                            <tr class="">
-                                                <td class="">
-                                                    <div class="product-info">
-                                                        <img width="80" src="images/shop/cart/cart-3.jpg"
-                                                            alt="">
-                                                        <a href="#!">Bingo</a>
-                                                    </div>
-                                                </td>
-                                                <td class="">$200.00</td>
-                                                <td class="">
-                                                    <a class="product-remove" href="#!">Remove</a>
-                                                </td>
-                                            </tr>
+
+                                            @php
+                                                $total = 0;
+                                            @endphp
+                                            @auth
+                                                {{-- (Auth::check()) --}}
+                                                @foreach (auth()->user()->carts as $cart)
+                                                    <tr class="">
+                                                        <td class="">
+                                                            <div class="product-info">
+                                                                <img width="80"
+                                                                    src="{{ asset('uploads/products/' . $cart->product->image) }}"
+                                                                    alt="">
+                                                                <a
+                                                                    href="{{ route('site.product', $cart->product->slug) }}">{{ $cart->product->trans_name }}</a>
+                                                            </div>
+                                                        </td>
+                                                        <td class="">${{ $cart->price }}</td>
+                                                        <td class=""><input type="number" value="{{ $cart->quantity }}" style="width: 50px" name="qyt[{{ $cart->product_id }}]" ></td>
+                                                        <td class="">${{ $cart->quantity * $cart->price }}</td>
+                                                        <td class="">
+                                                            <a onclick="return confirm('Are you sure!!!')" class="product-remove" href="{{ route('site.remove_cart',$cart->id) }}">  Remove</a>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            @endauth
                                         </tbody>
                                     </table>
-                                    <a href="checkout.html" class="btn btn-main pull-right">Checkout</a>
+
+                                    <button class="btn btn-solid-border">Update Cart</button>
+                                    <a href="{{ route('site.checkout') }}" class="btn btn-solid-border pull-right">Checkout</a>
                                 </form>
                             </div>
                         </div>

@@ -111,7 +111,7 @@ use App\Models\Category;
                                       </div>
                                       <h5><strong>${{ $cart->quantity *$cart->price }} </strong></h5>
                                   </div>
-                                  <a href="#!" class="remove"><i class="tf-ion-close"></i></a>
+                                  <a onclick="return confirm('Are you sure!!')" href="{{ route('site.remove_cart',$cart->id) }}" class="remove"><i class="tf-ion-close"></i></a>
                               </div>
                               @php
                                   $total +=$cart->quantity *$cart->price;

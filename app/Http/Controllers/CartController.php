@@ -23,8 +23,8 @@ class CartController extends Controller
             'user_id' => Auth::id(),
         ], [
 
-            'price' => $product->price,
-            'quantity' => DB::raw('quantity + '.$request->quantity)
+            'price' => $product->sale_price ? $product->sale_price : $product->price,
+            'quantity' => DB::raw('quantity + ' . $request->quantity)
         ]);
 
 
@@ -34,5 +34,99 @@ class CartController extends Controller
     public function cart()
     {
         return view('site.cart');
+    }
+
+    public function update_cart(Request $request)
+    {
+        // dd($request->all());
+        foreach ($request->qyt as $product_id => $new_qyt) {
+            Cart::where('product_id', $product_id)
+                ->where('user_id', Auth::id())
+                ->update(['quantity' => $new_qyt]);
+        }
+        return redirect()->back();
+    }
+
+    public function remove_cart($id)
+    {
+        Cart::destroy($id);
+        return redirect()->back();
+    }
+
+    public function checkout()
+    {
+        $total = Auth::user()->carts()->sum(DB::raw('price * quantity'));
+
+        $url = "https://eu-test.oppwa.com/v1/checkouts";
+        $data = "entityId=8a8294174b7ecb28014b9699220015ca" .
+            "&amount=$total" .
+            "&currency=USD" .
+            "&paymentType=DB";
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Authorization:Bearer OGE4Mjk0MTc0YjdlY2IyODAxNGI5Njk5MjIwMDE1Y2N8c3k2S0pzVDg='
+        ));
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // this should be set to true in production
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $responseData = curl_exec($ch);
+        if (curl_errno($ch)) {
+            return curl_error($ch);
+        }
+        curl_close($ch);
+        $responseData = json_decode($responseData, true);
+
+        $id = $responseData['id'];
+        return view('site.checkout', compact('id'));
+    }
+
+    public function payment(Request $request)
+    {
+        // dd($request->all());
+        $resourcePath = $request->resourcePath;
+        $url = "https://eu-test.oppwa.com$resourcePath";
+        $url .= "?entityId=8a8294174b7ecb28014b9699220015ca";
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Authorization:Bearer OGE4Mjk0MTc0YjdlY2IyODAxNGI5Njk5MjIwMDE1Y2N8c3k2S0pzVDg='
+        ));
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // this should be set to true in production
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $responseData = curl_exec($ch);
+        if (curl_errno($ch)) {
+            return curl_error($ch);
+        }
+        curl_close($ch);
+        $responseData = json_decode($responseData, true);
+        $code = $responseData['result']['code'];
+        if ($code == '000.100.110') {
+            $amount = $responseData['amount'];
+            $trasnaction_id =  $responseData['id'];
+            // echo 'Done';
+            return redirect()->route('site.success');
+        } else {
+            return redirect()->route('site.fail');
+
+            // echo 'Error';
+        }
+
+    }
+
+    public function success()
+    {
+        return view('site.success');
+        return redirect()->back();
+    }
+    public function fail()
+    {
+        return view('site.fail');
+        return redirect()->back();
+
     }
 }

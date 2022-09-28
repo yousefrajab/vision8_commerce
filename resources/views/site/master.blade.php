@@ -109,7 +109,7 @@ use App\Models\Category;
                                           <span>{{ $cart->quantity }} x</span>
                                           <span>${{ $cart->price }}</span>
                                       </div>
-                                      <h5><strong>${{ $cart->quantity *$cart->price }} </strong></h5>
+                                      <h5><strong>${{ $cart->quantity * $cart->price }} </strong></h5>
                                   </div>
                                   <a onclick="return confirm('Are you sure!!')" href="{{ route('site.remove_cart',$cart->id) }}" class="remove"><i class="tf-ion-close"></i></a>
                               </div>
@@ -303,7 +303,7 @@ use App\Models\Category;
     <!-- Main Js File -->
     <script src="{{ asset('siteass/js/script.js') }}"></script>
 
-
+@yield('scripts')
 
 </body>
 

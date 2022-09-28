@@ -15,7 +15,7 @@
                                 <p>Payment proccess done successfully</p>
                             </div>
                             <div class="text-center mt-4">
-                                <a href="{{ route('site.checkout') }}" class="btn btn-solid-border ">Back to Checkout</a>
+                                <a href="{{ route('site.checkout') }}" class="btn btn-main ">Back to Checkout</a>
                             </div>
                         </div>
                     </div>
@@ -26,3 +26,12 @@
 
 
     @stop
+@section('scripts')
+<script>
+setTimeout(() => {
+    window.location.href ='/';
+}, 3000);
+
+
+</script>
+@stop

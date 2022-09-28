@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\Cart;
+use App\Models\Order;
+use App\Models\Payment;
 use App\Models\Product;
+use App\Mail\InvoiceMail;
+use App\Models\OrderItem;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class CartController extends Controller
 {
@@ -57,6 +63,10 @@ class CartController extends Controller
     {
         $total = Auth::user()->carts()->sum(DB::raw('price * quantity'));
 
+       if($total == 0)
+{
+    return redirect()->route('site.shop');
+}
         $url = "https://eu-test.oppwa.com/v1/checkouts";
         $data = "entityId=8a8294174b7ecb28014b9699220015ca" .
             "&amount=$total" .
@@ -108,14 +118,53 @@ class CartController extends Controller
         if ($code == '000.100.110') {
             $amount = $responseData['amount'];
             $trasnaction_id =  $responseData['id'];
+            DB::beginTransaction();
+
+            try {
+                //create new order
+                $order = Order::create([
+                    'total' => $amount,
+                    'user_id' => Auth::id()
+                ]);
+                //add carts to order items
+                foreach (Auth::user()->carts as $cart) {
+                    OrderItem::create([
+                        'price' => $cart->price,
+                        'quantity' => $cart->quantity,
+                        'product_id' => $cart->product_id,
+                        'user_id' => $cart->user_id,
+                        'order_id' => $order->id
+                    ]);
+                    //decrease the product quantity
+                    $cart->product()->decrement('quantity', $cart->quantity);
+                    //delete user cart
+                    $cart->delete();
+                }
+                //create new payment
+                Payment::create([
+                    'total'=>$amount,
+                    'user_id'=>Auth::id(),
+                    'order_id'=>$order->id,
+                    'trasnaction_id'=>$trasnaction_id
+                ]);
+                DB::commit();
+            } catch (Exception $e) {
+                DB::rollBack();
+                throw new Exception($e->getMessage());
+            }
+
+            //send invoice
+            Mail::to
+        (Auth()->user()->email)->send(new InvoiceMail());
             // echo 'Done';
+
+
             return redirect()->route('site.success');
         } else {
             return redirect()->route('site.fail');
 
             // echo 'Error';
         }
-
     }
 
     public function success()
@@ -127,6 +176,5 @@ class CartController extends Controller
     {
         return view('site.fail');
         return redirect()->back();
-
     }
 }

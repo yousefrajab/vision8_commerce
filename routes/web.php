@@ -1,14 +1,18 @@
 <?php
 
+use App\Mail\InvoiceMail;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\DropZoneController;
-use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\SiteController;
+use App\Notifications\NewOrderNotification;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DropZoneController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
@@ -51,6 +55,21 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
 
 });
 
+//Dont Do This Just For test only
+Route::get('send-notification' , function(){
+// $user = Auth::user();
+
+// Mail::to
+//         ($user->email)->send(new InvoiceMail());
+
+// $user->notify(new NewOrderNotification());
+});
+
+route::get('invoice', function(){
+    return view('pdf.invoice');
+    // $pdf = Pdf::loadView('pdf.invoice');
+    // $pdf->save('invoices/latest.pdf');
+});
 
 //dropzone
 Route::get('/dropzone', [DropZoneController::class, 'dropzone']);

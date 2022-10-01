@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DropZoneController;
+use App\Models\Order;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
@@ -55,21 +56,9 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
 
 });
 
-//Dont Do This Just For test only
-Route::get('send-notification' , function(){
-// $user = Auth::user();
+include 'test.php';
 
-// Mail::to
-//         ($user->email)->send(new InvoiceMail());
 
-// $user->notify(new NewOrderNotification());
-});
-
-route::get('invoice', function(){
-    return view('pdf.invoice');
-    // $pdf = Pdf::loadView('pdf.invoice');
-    // $pdf->save('invoices/latest.pdf');
-});
 
 //dropzone
 Route::get('/dropzone', [DropZoneController::class, 'dropzone']);

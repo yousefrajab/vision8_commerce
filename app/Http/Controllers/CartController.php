@@ -10,6 +10,7 @@ use App\Models\Product;
 use App\Mail\InvoiceMail;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -63,10 +64,9 @@ class CartController extends Controller
     {
         $total = Auth::user()->carts()->sum(DB::raw('price * quantity'));
 
-       if($total == 0)
-{
-    return redirect()->route('site.shop');
-}
+        if ($total == 0) {
+            return redirect()->route('site.shop');
+        }
         $url = "https://eu-test.oppwa.com/v1/checkouts";
         $data = "entityId=8a8294174b7ecb28014b9699220015ca" .
             "&amount=$total" .
@@ -142,10 +142,10 @@ class CartController extends Controller
                 }
                 //create new payment
                 Payment::create([
-                    'total'=>$amount,
-                    'user_id'=>Auth::id(),
-                    'order_id'=>$order->id,
-                    'trasnaction_id'=>$trasnaction_id
+                    'total' => $amount,
+                    'user_id' => Auth::id(),
+                    'order_id' => $order->id,
+                    'trasnaction_id' => $trasnaction_id
                 ]);
                 DB::commit();
             } catch (Exception $e) {
@@ -154,8 +154,8 @@ class CartController extends Controller
             }
 
             //send invoice
-            Mail::to
-        (Auth()->user()->email)->send(new InvoiceMail());
+            $invname = rand().rand().'.pdf';             Pdf::loadView('pdf.invoice', ['order' => $order])->save('invoices/'.$invname);
+            Mail::to(Auth()->user()->email)->send(new InvoiceMail(Auth::user()->name,$invname));
             // echo 'Done';
 
 

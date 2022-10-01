@@ -71,6 +71,9 @@
             vertical-align: middle
         }
      </style>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+
 
     @yield('styles')
 
@@ -388,9 +391,14 @@
 
     <!-- Core plugin JavaScript-->
     <script src="{{ asset('AdminAss/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('AdminAss/js/sb-admin-2.min.js') }}"></script>
+    <script>
+        var userId = '{{ Auth::id() }}'
+    </script>
+    @vite([ 'resources/js/app.js'])
     @yield('scripts')
 
 </body>

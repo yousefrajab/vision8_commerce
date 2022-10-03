@@ -56,3 +56,10 @@ Route::get('read_all_notify',function(){
     return redirect()->back();
 
 })->name('readall_notify');
+
+// Route::delete('del_all_notify/{id}',function($id){
+//      Auth::user()->unreadnotifications->find($id)->delete();
+//     // Auth::user()->unreadnotifications->destroy($id);
+//     return redirect()->back();
+
+// })->name('delall_notify');

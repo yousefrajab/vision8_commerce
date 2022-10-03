@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DropZoneController;
+use App\Http\Controllers\ApiController;
 use App\Models\Order;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -55,6 +56,9 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
     Route::get('/payment/fail', [CartController::class, 'fail'])->name('site.fail')->middleware('auth');
 
 });
+
+Route::get('posts-api',[ApiController::class ,'posts']);
+
 
 include 'test.php';
 

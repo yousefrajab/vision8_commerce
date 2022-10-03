@@ -19,3 +19,14 @@
   <br>
   <br>
 @stop
+
+@section('scripts')
+<script>
+setTimeout(() => {
+    window.location.href ='/read_notify';
+}, 2000);
+
+
+</script>
+@stop
+

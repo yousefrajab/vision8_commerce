@@ -12,6 +12,7 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Image</th>
+                {{-- <th>Content</th> --}}
                 <th>Price</th>
                 <th>Sale Price</th>
                 <th>Quantity</th>
@@ -27,6 +28,7 @@
                     <td>{{ $product->trans_name }}</td>
                     <td><img width="80" src="{{ asset('uploads/products/'. $product->image) }}" alt="">
                     </td>
+                    {{-- <td>{{ $product->trans_content }}</td> --}}
                     <td>{{ $product->price }}</td>
                     <td>{{ $product->sale_price }}</td>
                     <td>{{ $product->quantity }}</td>

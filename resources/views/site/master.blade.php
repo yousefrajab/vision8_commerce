@@ -58,10 +58,17 @@ use App\Models\Category;
                             <i class="tf-ion-ios-telephone"></i>
                             <span>0592611538</span>
                         </a>
+                        <br>
+
                         <a href="mailto:yousefrajab2018@gmail.com">
                             <i class="fas fa-envelope"></i>
                             <mark>yousefrajab2018@gmail.com</mark>
                         </a>
+
+                        <br>
+                        {{-- {{ $weather['main']['temp'] }} --}}
+                        <img width="25" src="http://openweathermap.org/img/wn/{{ $weather['weather'][0]['icon'] }}@2x.png" alt=""> : {{ $weather['main']['temp'] }}℃
+                        {{-- weather : {{ $weather['main']['temp'] }}℃ --}}
                     </div>
                 </div>
                 <div class="col-md-4 col-xs-12 col-sm-4">

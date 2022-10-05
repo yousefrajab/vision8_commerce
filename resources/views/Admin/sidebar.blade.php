@@ -86,6 +86,14 @@
             <span>{{ __('site.users') }}</span></a>
     </li>
 
+    <hr class="sidebar-divider my-0">
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.roles.index') }}">
+            <i class="fas fa-fw fa-lock"></i>
+            <span>{{ __('site.roles') }}</span></a>
+    </li>
+
     <!-- Nav Item - Utilities Collapse Menu -->
     {{-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"

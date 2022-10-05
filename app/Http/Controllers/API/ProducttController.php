@@ -7,6 +7,7 @@ use App\Models\Product;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Review;
 
 class ProducttController extends Controller
 {
@@ -17,7 +18,31 @@ class ProducttController extends Controller
      */
     public function index()
     {
-        return Product::all();
+
+        // $products = Review::all();
+        $products = Product::all();
+        // return [
+        //     'message'=> 'All products',
+        //     'status'=> 'success',
+        //     'data'=> $products
+        // ];
+        if($products->count()>0){
+
+            return response()->json([
+                'message'=> 'All products',
+                'status'=> 'success',
+                'data'=> $products
+            ], 201);
+
+        }else{
+
+            return response()->json([
+                'message'=> 'No Data Found',
+                'status'=> 'success',
+                'data'=> []
+            ], 200);
+        }
+
     }
 
     /**
@@ -94,7 +119,21 @@ class ProducttController extends Controller
      */
     public function show($id)
     {
-        return Product::find($id);
+        $product =  Product::find($id);
+        if ($product) {
+            return response()->json([
+                'message'=> 'Found Data',
+                'status'=> 'success',
+                'data'=> $product
+            ], 200);
+        } else {
+            return response()->json([
+                'message'=> 'No Found Data',
+                'status'=> 'success',
+                'data'=> []
+            ], 404);
+        }
+
     }
 
     /**
@@ -199,6 +238,7 @@ class ProducttController extends Controller
      */
     public function destroy($id)
     {
-        //
+    //    return 'delete'. $id;
+    return Product::destroy($id);
     }
 }

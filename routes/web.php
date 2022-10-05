@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DropZoneController;
+use App\Http\Controllers\admin\rolecontroller;
 use App\Http\Controllers\ApiController;
 use App\Models\Order;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -23,6 +24,8 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('index');
         route::resource('categories', CategoryController::class);
         route::resource('products', ProductController::class);
+        route::resource('roles', rolecontroller::class);
+
         Route::get('
          delete-image/{id}', [ProductController::class, 'delete_image'])->name('products.delete_image');
         route::get('users', [UserController::class, 'index'])->name('users.index');

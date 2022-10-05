@@ -16,4 +16,6 @@ return [
     'payments'=>'Payments',
     'users'=>'Users',
     'All Users'=>'All Users',
+    'roles'=>'roles',
+
 ];

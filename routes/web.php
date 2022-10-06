@@ -24,7 +24,13 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('index');
         route::resource('categories', CategoryController::class);
         route::resource('products', ProductController::class);
+        Route::get('roles/trash', [rolecontroller::class, 'trash'])->name('roles.trash');
+        Route::get('roles/{id}/forcedelete', [rolecontroller::class, 'forcedelete'])->name('roles.forcedelete');
+        Route::get('roles/{id}/restore', [rolecontroller::class, 'restore'])->name('roles.restore');
         route::resource('roles', rolecontroller::class);
+
+
+        // route::delete('roles/{id}/destroy', [rolecontroller::class, 'destroy'])->name('roles.destroy');
 
         Route::get('
          delete-image/{id}', [ProductController::class, 'delete_image'])->name('products.delete_image');

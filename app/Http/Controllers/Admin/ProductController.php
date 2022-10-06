@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Gate;
 
 class ProductController extends Controller
 {
@@ -19,6 +20,7 @@ class ProductController extends Controller
      */
     public function index()
     {
+        Gate::authorize('all_products');
         $products = Product::with('category')->orderbydesc('id')->paginate(5);
 
         return view('Admin.products.index', compact('products'));

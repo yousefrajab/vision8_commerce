@@ -14,7 +14,7 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item">
+    <li class="nav-item {{ request()->routeIs('admin.index') ? 'active' : ''}}">
         <a class="nav-link" href="{{ route('admin.index') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>{{ __('site.dashboard') }}</span></a>
@@ -34,7 +34,7 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsCategory"
             aria-expanded="true" aria-controls="collapsCategory">
             <i class="fas fa-fw fa-tags"></i>
-            <span>{{ __('site.categories') }}</span>
+            <span>{{ __('site.Categories') }}</span>
         </a>
         <div id="collapsCategory" class="collapse {{ str_contains(request()->url(),'categories') ? 'show' :'' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
@@ -51,7 +51,7 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProduct"
             aria-expanded="true" aria-controls="collapseProduct">
             <i class="fas fa-fw fa-heart"></i>
-            <span>{{ __('site.products') }}</span>
+            <span>{{ __('site.Products') }}</span>
         </a>
         <div id="collapseProduct" class="collapse {{ str_contains(request()->url(),'products') ? 'show' :'' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
@@ -87,12 +87,27 @@
     </li>
 
     <hr class="sidebar-divider my-0">
-
     <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsRole"
+            aria-expanded="true" aria-controls="collapsRole">
+            <i class="fas fa-fw fa-lock"></i>
+            <span>{{ __('site.Roles') }}</span>
+        </a>
+        <div id="collapsRole" class="collapse {{ str_contains(request()->url(),'roles') ? 'show' :'' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
+                <a class="collapse-item {{ request()->routeIs('admin.roles.index')? 'active': '' }}" href="{{ route('admin.roles.index') }}">{{ __('site.All Roles') }}</a>
+                <a class="collapse-item {{ request()->routeIs('admin.roles.create')? 'active': '' }}" href="{{ route('admin.roles.create') }}">{{ __('site.Add New Role') }}</a>
+                <a class="collapse-item" href="{{ route('admin.roles.trash') }}">{{ __('site.Trash') }}</a>
+
+            </div>
+        </div>
+    </li>
+    {{-- <li class="nav-item {{ request()->routeIs('admin.roles.index') ? 'active' : ''}}">
         <a class="nav-link" href="{{ route('admin.roles.index') }}">
             <i class="fas fa-fw fa-lock"></i>
             <span>{{ __('site.roles') }}</span></a>
-    </li>
+    </li> --}}
 
     <!-- Nav Item - Utilities Collapse Menu -->
     {{-- <li class="nav-item">

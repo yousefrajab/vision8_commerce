@@ -7,7 +7,7 @@ use App\Models\ability;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class rolecontroller extends Controller
+  class rolecontroller extends Controller
 {
     public function index()
     {
@@ -64,7 +64,7 @@ class rolecontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Role $role)
+    public function edit(role $role)
     {
         // $role = Role::findOrFail($id);
         $abilities = ability::all();
@@ -101,7 +101,9 @@ class rolecontroller extends Controller
      */
     public function destroy($id)
     {
-        //
+        $roles = role::findOrFail($id);
+        $roles->delete();
+        return redirect()->route('admin.roles.index')->with('msgg','Role deleted successully')->with('type','danger');
     }
 
     /**
@@ -112,7 +114,8 @@ class rolecontroller extends Controller
      */
     public function trash()
     {
-        //
+        $roles = role::onlyTrashed()->get();
+        return view('admin.roles.trash', compact('roles'));
     }
 
     /**
@@ -123,7 +126,9 @@ class rolecontroller extends Controller
      */
     public function restore($id)
     {
-        //
+        role::onlyTrashed()->find($id)->restore();
+
+        return redirect()->route('admin.roles.trash')->with('msgg', 'Role restored successfully')->with('type', 'warning');
     }
 
     /**
@@ -134,6 +139,10 @@ class rolecontroller extends Controller
      */
     public function forcedelete($id)
     {
-        //
+        $role = role::onlyTrashed()->find($id);
+        // File::delete(public_path('uploads/categories/'. $category->image));
+        $role->forcedelete();
+
+        return redirect()->route('admin.roles.trash')->with('msgg', 'Role deleted permanintly successfully')->with('type', 'danger');
     }
 }

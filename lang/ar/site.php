@@ -3,12 +3,12 @@
 return [
 
     'dashboard'=>'لوحة التحكم',
-    'categories'=>'الأقسام',
+    'Categories'=>'الأقسام',
     'Create New Category'=>'انشاء قسم جديد',
     'All Categories'=>' جميع الأقسام',
     'Add New Category'=>'اضافة قسم جديد',
     'Edit Category'=>'تعديل قسم',
-    'products'=>'المنتجات',
+    'Products'=>'المنتجات',
     'Create New Product'=>'انشاء منتج جديد',
     'All Products'=>' جميع المنتجات',
     'Add New Product'=>' اضافة منتج جديد',
@@ -17,5 +17,12 @@ return [
     'payments'=>'المبيعات',
     'users'=>'المشتركين',
     'All Users'=>' جميع المشتركين',
-    'roles'=>'الصلاحيات',
+    'Roles'=>'الصلاحيات',
+    'All Roles'=>'جميع الصلاحيات',
+    'Add New Role'=>'اضافة صلاحية جديد',
+    'Earnings (Monthly)'=>'أرباح(شهرية)',
+    'Earnings (Annual)'=>'أرباح(سنوية)',
+    'Trash'=>'سلة المهملات',
+
+
 ];

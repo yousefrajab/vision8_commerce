@@ -32,7 +32,11 @@
         @endforeach
     </ul>
 
-    <button class="btn btn-info w-25">Updated</button>
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <button class="btn btn-info w-25">Updated</button>
+        {{-- <a href="{{ route('admin.roles.index') }}" class="btn btn-dark w-25">Back to Role Index</a> --}}
+    </div>
 </form>
 @stop
 

@@ -1,6 +1,6 @@
 @extends('admin.master')
 
-@section('title', 'Dashboard | Admin')
+@section('title', 'Create Role | Admin')
 
 @section('styles')
 
@@ -14,7 +14,7 @@
 
 @section('content')
 <!-- Page Heading -->
-<h1 class="h3 mb-4 text-gray-800">Add new Category</h1>
+<h1 class="h3 mb-4 text-gray-800">{{ __('site.Add New Role') }}</h1>
 @include('admin.errors')
 <form action="{{ route('admin.roles.store') }}" method="POST">
     @csrf
@@ -32,7 +32,11 @@
     </ul>
 
 
-    <button class="btn btn-success w-25">Add</button>
+    {{-- <button class="btn btn-success w-25">Add</button> --}}
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <button class="btn btn-success w-25 mb-4">Add</button>
+        <a href="{{ route('admin.roles.index') }}" class="btn btn-dark w-25">Back to Role Index</a>
+    </div>
 </form>
 @stop
 

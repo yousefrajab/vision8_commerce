@@ -1,6 +1,6 @@
-@extends('admin.master')
+@extends('Admin.master')
 
-@section('title', 'Dashboard | Admin')
+@section('title', 'Trash Roles | Admin')
 
 @section('styles')
 
@@ -15,11 +15,11 @@
 
 @section('content')
 <!-- Page Heading -->
-<h1 class="h3 mb-4 text-gray-800">Trashed Categories</h1>
+<h1 class="h3 mb-4 text-gray-800">Trashed Role</h1>
 
-@if (session('msg'))
+@if (session('msgg'))
     <div class="alert alert-{{ session('type') }}">
-        {{ session('msg') }}
+        {{ session('msgg') }}
     </div>
 @endif
 
@@ -29,13 +29,14 @@
         <th>Name</th>
         <th>Actions</th>
     </tr>
-    @foreach ($categories as $category)
+    @foreach ($roles as $role)
     <tr>
-        <td>{{ $category->id }}</td>
-        <td>{{ $category->trans_name }}</td>
+        <td>{{ $role->id }}</td>
+        <td>{{ $role->name }}</td>
+
         <td>
-            <a class="btn btn-sm btn-primary" href="{{ route('admin.categories.restore', $category->id) }}"><i class="fas fa-undo"></i></a>
-            <a onclick="return confirm('Are you sure?!')" class="btn btn-sm btn-danger" href="{{ route('admin.categories.forcedelete', $category->id) }}"><i class="fas fa-times"></i></a>
+            <a class="btn btn-sm btn-primary" href="{{ route('admin.roles.restore', $role->id) }}"><i class="fas fa-undo"></i></a>
+            <a onclick="return confirm('Are you sure?!')" class="btn btn-sm btn-danger" href="{{ route('admin.roles.forcedelete', $role->id) }}"><i class="fas fa-times"></i></a>
 
         </td>
     </tr>

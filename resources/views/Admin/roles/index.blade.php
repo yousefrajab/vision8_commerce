@@ -1,6 +1,6 @@
 @extends('admin.master')
 
-@section('title', 'Dashboard | Admin')
+@section('title', 'Role Index | Admin')
 
 @section('styles')
 
@@ -16,13 +16,13 @@
 @section('content')
 <!-- Page Heading -->
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h1 class="h3 text-gray-800">All Roles</h1>
-    <a class="btn btn-success w-25" href="{{ route('admin.roles.create') }}">Add New</a>
+    <h1 class="h3 text-gray-800">{{ __('site.All Roles') }}</h1>
+    {{-- <a class="btn btn-success w-25" href="{{ route('admin.roles.create') }}">Add New</a> --}}
 </div>
 
-@if (session('msg'))
+@if (session('msgg'))
     <div class="alert alert-{{ session('type') }}">
-        {{ session('msg') }}
+        {{ session('msgg') }}
     </div>
 @endif
 
@@ -48,6 +48,10 @@
     </tr>
     @endforeach
 
+
 </table>
+{{-- <div class="text-center mt-4">
+
+</div> --}}
 {{ $roles->links() }}
 @stop

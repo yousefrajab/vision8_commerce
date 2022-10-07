@@ -43,4 +43,7 @@
     @endforeach
 
 </table>
+        <a  onclick="return confirm('Are You sure ?') " href="{{ route('admin.roles.restore_all') }}" class="btn btn-success"> <i class="fas fa-undo"> </i>Restore All</a>
+        <a  onclick="return confirm('Are You sure ?') " href="{{ route('admin.roles.delete_all') }}" class="btn btn-danger "><i class="fas fa-times"> </i>Delete All</a>
+
 @stop

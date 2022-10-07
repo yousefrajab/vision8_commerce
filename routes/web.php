@@ -27,6 +27,9 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
         Route::get('roles/trash', [rolecontroller::class, 'trash'])->name('roles.trash');
         Route::get('roles/{id}/forcedelete', [rolecontroller::class, 'forcedelete'])->name('roles.forcedelete');
         Route::get('roles/{id}/restore', [rolecontroller::class, 'restore'])->name('roles.restore');
+        Route::get('roles/restore-all', [rolecontroller::class, 'restore_all'])->name('roles.restore_all');
+
+        Route::get('roles/delete-all', [rolecontroller::class, 'delete_all'])->name('roles.delete_all');
         route::resource('roles', rolecontroller::class);
 
 
@@ -63,10 +66,9 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
     Route::get('/payment', [CartController::class, 'payment'])->name('site.payment')->middleware('auth');
     Route::get('/payment/success', [CartController::class, 'success'])->name('site.success')->middleware('auth');
     Route::get('/payment/fail', [CartController::class, 'fail'])->name('site.fail')->middleware('auth');
-
 });
 
-Route::get('posts-api',[ApiController::class ,'posts']);
+Route::get('posts-api', [ApiController::class, 'posts']);
 
 
 include 'test.php';

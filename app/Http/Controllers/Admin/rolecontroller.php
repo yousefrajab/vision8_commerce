@@ -145,4 +145,15 @@ use App\Http\Controllers\Controller;
 
         return redirect()->route('admin.roles.trash')->with('msgg', 'Role deleted permanintly successfully')->with('type', 'danger');
     }
+    public function restore_all()
+    {
+        role::onlyTrashed()->restore();
+        return redirect()->route('admin.roles.index')->with('msgg', 'roles restore successfully')->with('type', 'warning');
+    }
+
+    public function delete_all()
+    {
+        role::onlyTrashed()->forcedelete();
+        return redirect()->route('admin.roles.index')->with('msgg', 'role deleted successfully')->with('type', 'danger');
+    }
 }

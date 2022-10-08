@@ -48,7 +48,7 @@ class CategoryController extends Controller
         $request->validate([
             'name_en'=>'required',
             'name_ar'=>'required',
-            // 'name_fr'=>'required',
+            'name_fr'=>'required',
             'image'=>'required',
             'parent_id'=>'nullable|exists:categories,id'
         ]);
@@ -60,7 +60,7 @@ class CategoryController extends Controller
         $name = json_encode([
             'en'=> $request->name_en,
             'ar'=> $request->name_ar,
-            // 'fr'=> $request->name_fr,
+            'fr'=> $request->name_fr,
         ], JSON_UNESCAPED_UNICODE);
         //Insert to Database
         Category::create([
@@ -110,7 +110,7 @@ class CategoryController extends Controller
         $request->validate([
             'name_en'=>'required',
             'name_ar'=>'required',
-            // 'name_fr'=>'required',
+            'name_fr'=>'required',
             'parent_id'=>'nullable|exists:categories,id',
         ]);
 
@@ -127,7 +127,7 @@ class CategoryController extends Controller
       $name = json_encode([
         'en'=> $request->name_en,
         'ar'=> $request->name_ar,
-        // 'fr'=> $request->name_fr,
+        'fr'=> $request->name_fr,
     ], JSON_UNESCAPED_UNICODE);
         //Insert to Database
        $category->update([
@@ -155,5 +155,40 @@ class CategoryController extends Controller
       $category->children()->update(['parent_id'=>null]);
         $category->delete();
         return redirect()->route('admin.categories.index')->with('msgg','Category deleted successully')->with('type','danger');
+    }
+    public function trash()
+    {
+        $categories = Category::onlyTrashed()->get();
+
+        return view('admin.categories.trash', compact('categories'));
+    }
+
+    public function restore($id)
+    {
+        Category::onlyTrashed()->find($id)->restore();
+
+        return redirect()->route('admin.categories.trash')->with('msgg', 'Category restored successfully')->with('type', 'warning');
+    }
+
+    public function forcedelete($id)
+    {
+        $category = Category::onlyTrashed()->find($id);
+        $category->children()->update(['parent_id'=>null]);
+        File::delete(public_path('uploads/categories/'. $category->image));
+        $category->forcedelete();
+
+        return redirect()->route('admin.categories.trash')->with('msgg', 'Category deleted permanintly successfully')->with('type', 'danger');
+    }
+
+    public function restore_all()
+    {
+        Category::onlyTrashed()->restore();
+        return redirect()->route('admin.categories.index')->with('msgg', 'categories restore successfully')->with('type', 'warning');
+    }
+
+    public function delete_all()
+    {
+        Category::onlyTrashed()->forcedelete();
+        return redirect()->route('admin.categories.index')->with('msgg', 'categories deleted successfully')->with('type', 'danger');
     }
 }

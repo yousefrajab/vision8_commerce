@@ -41,9 +41,17 @@
                 {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
                 <a class="collapse-item {{ request()->routeIs('admin.categories.index')? 'active': '' }}" href="{{ route('admin.categories.index') }}">{{ __('site.All Categories') }}</a>
                 <a class="collapse-item {{ request()->routeIs('admin.categories.create')? 'active': '' }}" href="{{ route('admin.categories.create') }}">{{ __('site.Add New Category') }}</a>
+                <a class="collapse-item" href="{{ route('admin.categories.trash') }}">{{ __('site.Trashed Categories') }}</a>
             </div>
         </div>
     </li>
+
+    {{-- {{ __('site.Trash') }} = {{ trans('site.Trash') }} =
+    @lang__('site.Trash')    --}}
+
+
+
+
 
     <hr class="sidebar-divider my-0">
 
@@ -58,6 +66,7 @@
                 {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
                 <a class="collapse-item {{ request()->routeIs('admin.products.index')? 'active': '' }}" href="{{ route('admin.products.index') }}">{{ __('site.All Products') }}</a>
                 <a class="collapse-item {{ request()->routeIs('admin.products.create')? 'active': '' }}" href="{{ route('admin.products.create') }}">{{ __('site.Add New Product') }}</a>
+                <a class="collapse-item" href="{{ route('admin.products.trash') }}">{{ __('site.Trashed Products') }}</a>
             </div>
         </div>
     </li>
@@ -98,7 +107,7 @@
                 {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
                 <a class="collapse-item {{ request()->routeIs('admin.roles.index')? 'active': '' }}" href="{{ route('admin.roles.index') }}">{{ __('site.All Roles') }}</a>
                 <a class="collapse-item {{ request()->routeIs('admin.roles.create')? 'active': '' }}" href="{{ route('admin.roles.create') }}">{{ __('site.Add New Role') }}</a>
-                <a class="collapse-item" href="{{ route('admin.roles.trash') }}">{{ __('site.Trash') }}</a>
+                <a class="collapse-item" href="{{ route('admin.roles.trash') }}">{{ __('site.Trashed Role') }}</a>
 
             </div>
         </div>

@@ -22,8 +22,23 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 Route::prefix(LaravelLocalization::setLocale())->group(function () {
     Route::prefix('admin')->name('admin.')->middleware('auth', 'user_type', 'verified')->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('index');
+        Route::get('categories/trash', [CategoryController::class, 'trash'])->name('categories.trash');
+        Route::get('categories/{id}/forcedelete', [CategoryController::class, 'forcedelete'])->name('categories.forcedelete');
+        Route::get('categories/{id}/restore', [CategoryController::class, 'restore'])->name('categories.restore');
+        Route::get('categories/restore-all', [CategoryController::class, 'restore_all'])->name('categories.restore_all');
+
+        Route::get('categories/delete-all', [CategoryController::class, 'delete_all'])->name('categories.delete_all');
+
         route::resource('categories', CategoryController::class);
+
+        Route::get('products/trash', [ProductController::class, 'trash'])->name('products.trash');
+        Route::get('products/{id}/forcedelete', [ProductController::class, 'forcedelete'])->name('products.forcedelete');
+        Route::get('products/{id}/restore', [ProductController::class, 'restore'])->name('products.restore');
+        Route::get('products/restore-all', [ProductController::class, 'restore_all'])->name('products.restore_all');
+
+        Route::get('products/delete-all', [ProductController::class, 'delete_all'])->name('products.delete_all');
         route::resource('products', ProductController::class);
+
         Route::get('roles/trash', [rolecontroller::class, 'trash'])->name('roles.trash');
         Route::get('roles/{id}/forcedelete', [rolecontroller::class, 'forcedelete'])->name('roles.forcedelete');
         Route::get('roles/{id}/restore', [rolecontroller::class, 'restore'])->name('roles.restore');

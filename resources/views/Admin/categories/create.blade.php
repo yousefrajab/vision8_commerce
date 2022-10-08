@@ -28,6 +28,11 @@
     </div>
 
     <div class="mb-3">
+        <label>French Name</label>
+        <input type="text" name="name_fr" placeholder="French Name" class="form-control" />
+    </div>
+
+    <div class="mb-3">
         <label for="image">Image</label>
         <input type="file" id="image" name="image" class="form-control" />
     </div>

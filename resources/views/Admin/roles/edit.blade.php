@@ -14,7 +14,7 @@
 
 @section('content')
 <!-- Page Heading -->
-<h1 class="h3 mb-4 text-gray-800">Edit Role</h1>
+<h1 class="h3 mb-4 text-gray-800">{{ __('site.Edit Role') }}</h1>
 @include('admin.errors')
 <form action="{{ route('admin.roles.update', $role->id) }}" method="POST" enctype="multipart/form-data">
     @csrf
@@ -34,7 +34,7 @@
 
 
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <button class="btn btn-info w-25">Updated</button>
+        <button class="btn btn-info w-25">{{ __('site.Updated') }}</button>
         {{-- <a href="{{ route('admin.roles.index') }}" class="btn btn-dark w-25">Back to Role Index</a> --}}
     </div>
 </form>

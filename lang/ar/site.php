@@ -23,6 +23,20 @@ return [
     'Earnings (Monthly)'=>'أرباح(شهرية)',
     'Earnings (Annual)'=>'أرباح(سنوية)',
     'Trash'=>'سلة المهملات',
+    'Trashed Role'=>'سلة مهملات الصلاحيات',
+    'Trashed Categories'=>'سلة مهملات الأقسام',
+    'Trashed Products'=>'سلة مهملات المنتجات',
+
+    'Restore All'=>'استعادة الكل',
+    'Delete All'=>'حذف الكل',
+    'ID'=>'بطاقة التعريف',
+    'Name'=>'الاسم',
+    'Actions'=>'الاحداث',
+    'Select All'=>'اختار الكل',
+    'Add'=>'اضافة',
+    'Edit Role'=>'تعديل صلاحية',
+    'Updated'=>'تحديث'
+
 
 
 ];

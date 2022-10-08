@@ -32,6 +32,15 @@ trait Trans
         return $this->name;
     }
 
+    public function getNameFrAttribute()
+    {
+        if($this->name) {
+            return json_decode($this->name, true)['fr'];
+        }
+
+        return $this->name;
+    }
+
     // protected function nameAr(): Attribute
     // {
     //     return Attribute::make(
@@ -67,6 +76,15 @@ trait Trans
     {
         if($this->content) {
             return json_decode($this->content, true)['ar'];
+        }
+
+        return $this->content;
+    }
+
+    public function getContentFrAttribute()
+    {
+        if($this->content) {
+            return json_decode($this->content, true)['fr'];
         }
 
         return $this->content;

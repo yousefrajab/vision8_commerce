@@ -49,6 +49,13 @@ background:#333;
         <input type="text" placeholder="Arabic Name" name="name_ar" class="form-control" value="{{ $product->name_ar}}"/>
     </div>
 </div>
+<div class="col-md-6">
+    <div class="mb-3">
+        <label>French Name</label>
+        <input type="text" name="name_fr" placeholder="French Name" class="form-control " value="{{ $product->name_fr}}" />
+    </div>
+</div>
+
 </div>
 <div class="mb-3">
     <label for="image">Image</label>
@@ -79,6 +86,11 @@ background:#333;
 <div class="mb-3">
     <label>Arabic Content</label>
     <textarea placeholder="Arabic Content" name="content_ar" class="myeditor" value="{{ $product->content_ar}}"></textarea>
+</div>
+
+<div class="mb-3">
+    <label>French Content</label>
+    <textarea placeholder="French Content" name="content_fr" class="myeditor" value="{{ $product->content_fr}}"></textarea>
 </div>
 
 <div class="row">

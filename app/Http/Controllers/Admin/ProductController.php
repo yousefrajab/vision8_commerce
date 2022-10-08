@@ -49,6 +49,7 @@ class ProductController extends Controller
         $request->validate([
             'name_en' => 'required',
             'name_ar' => 'required',
+            'name_fr' => 'required',
             'image' => 'required',
             'content_en' => 'required',
             'content_ar' => 'required',
@@ -64,12 +65,12 @@ class ProductController extends Controller
         $name = json_encode([
             'en' => $request->name_en,
             'ar' => $request->name_ar,
-            // 'fr'=> $request->name_fr,
+            'fr'=> $request->name_fr,
         ], JSON_UNESCAPED_UNICODE);
         $content = json_encode([
             'en' => $request->content_en,
             'ar' => $request->content_ar,
-            // 'fr'=> $request->name_fr,
+           'fr'=> $request->name_fr,
         ], JSON_UNESCAPED_UNICODE);
 
         $slugcount=Product::where('slug','like','%'. Str::slug($request->name_en).'%')->count();
@@ -148,6 +149,7 @@ class ProductController extends Controller
         $request->validate([
             'name_en' => 'required',
             'name_ar' => 'required',
+            'name_fr' => 'required',
             'image' => 'nullable',
             'content_en' => 'required',
             'content_ar' => 'required',
@@ -168,12 +170,12 @@ class ProductController extends Controller
         $name = json_encode([
             'en' => $request->name_en,
             'ar' => $request->name_ar,
-            // 'fr'=> $request->name_fr,
+             'fr'=> $request->name_fr,
         ], JSON_UNESCAPED_UNICODE);
         $content = json_encode([
             'en' => $request->content_en,
             'ar' => $request->content_ar,
-            // 'fr'=> $request->name_fr,
+             'fr'=> $request->name_fr,
         ], JSON_UNESCAPED_UNICODE);
         //Insert to Database
 
@@ -215,10 +217,9 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product = Product::findOrFail($id);
-        File::delete(public_path('uploads/products/' . $product->image));
         // Category::where('parent_id',$product->id)->update(['parent_id'=>null]);
         //   $product->children()->update(['parent_id'=>null]);
-        $product->album()->delete();
+        // $product->album()->delete();
         $product->delete();
         return redirect()->route('admin.products.index')->with('msg', 'Product deleted successully')->with('type', 'danger');
     }
@@ -227,5 +228,44 @@ class ProductController extends Controller
     {
         Image::destroy($id);
         return redirect()->back();
+    }
+
+    public function trash()
+    {
+        $products = Product::onlyTrashed()->get();
+
+        return view('admin.products.trash', compact('products'));
+    }
+
+    public function restore($id)
+    {
+        Product::onlyTrashed()->find($id)->restore();
+
+        return redirect()->route('admin.products.trash')->with('msgg', 'Product restored successfully')->with('type', 'warning');
+    }
+
+    public function forcedelete($id)
+    {
+
+        $product = Product::onlyTrashed()->find($id);
+        File::delete(public_path('uploads/products/' . $product->image));
+
+        $product->children()->update(['parent_id'=>null]);
+        // File::delete(public_path('uploads/products/'. $product->image));
+        $product->forcedelete();
+
+        return redirect()->route('admin.products.trash')->with('msgg', 'Product deleted permanintly successfully')->with('type', 'danger');
+    }
+
+    public function restore_all()
+    {
+        Product::onlyTrashed()->restore();
+        return redirect()->route('admin.products.index')->with('msgg', 'products restore successfully')->with('type', 'warning');
+    }
+
+    public function delete_all()
+    {
+        Product::onlyTrashed()->forcedelete();
+        return redirect()->route('admin.products.index')->with('msgg', 'products deleted successfully')->with('type', 'danger');
     }
 }

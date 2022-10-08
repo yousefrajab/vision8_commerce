@@ -6,9 +6,9 @@
 <!-- Page Heading -->
 <h1 class="h3 mb-4 text-gray-800">{{ __('site.All Categories') }}</h1>
 
-@if (session('msg'))
+@if (session('msgg'))
     <div class="alert alert-{{ session('type') }}">
-        {{ session('msg') }}
+        {{ session('msgg') }}
     </div>
 @endif
 

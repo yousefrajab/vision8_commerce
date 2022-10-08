@@ -28,9 +28,9 @@
 
 <table class="table table-bordered table-striped table-hover">
     <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Actions</th>
+        <th>{{ __('site.ID') }}</th>
+        <th>{{ __('site.Name') }}</th>
+        <th>{{ __('site.Actions') }}</th>
     </tr>
     @foreach ($roles as $role)
     <tr>

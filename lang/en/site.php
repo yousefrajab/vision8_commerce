@@ -22,6 +22,20 @@ return [
     'Earnings (Monthly)'=>'Earnings (Monthly)',
     'Earnings (Annual)'=>'Earnings (Annual)',
     'Trash'=>'Trash',
+    'Trashed Role'=>'Trashed Role',
+    'Trashed Categories'=>'Trashed Categories',
+    'Trashed Products'=>'Trashed Products',
+    'Restore All'=>'Restore All',
+    'Delete All'=>'Delete All',
+    'ID'=>'ID',
+    'Name'=>'Name',
+    'Actions'=>'Actions',
+    'Select All'=>'Select All',
+    'Add'=>'Add',
+    'Edit Role'=>'Edit Role',
+    'Updated'=>'Updated'
+
+
 
 
 ];

@@ -15,7 +15,7 @@
 
 @section('content')
 <!-- Page Heading -->
-<h1 class="h3 mb-4 text-gray-800">Trashed Role</h1>
+<h1 class="h3 mb-4 text-gray-800">{{ __('site.Trashed Role') }}</h1>
 
 @if (session('msgg'))
     <div class="alert alert-{{ session('type') }}">
@@ -25,9 +25,9 @@
 
 <table class="table table-bordered table-striped table-hover">
     <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Actions</th>
+        <th>{{ __('site.ID') }}</th>
+        <th>{{ __('site.Name') }}</th>
+        <th>{{ __('site.Actions') }}</th>
     </tr>
     @foreach ($roles as $role)
     <tr>
@@ -43,7 +43,7 @@
     @endforeach
 
 </table>
-        <a  onclick="return confirm('Are You sure ?') " href="{{ route('admin.roles.restore_all') }}" class="btn btn-success"> <i class="fas fa-undo"> </i>Restore All</a>
-        <a  onclick="return confirm('Are You sure ?') " href="{{ route('admin.roles.delete_all') }}" class="btn btn-danger "><i class="fas fa-times"> </i>Delete All</a>
+        <a  onclick="return confirm('Are You sure ?') " href="{{ route('admin.roles.restore_all') }}" class="btn btn-success"> <i class="fas fa-undo"> </i>{{ __('site.Restore All') }}</a>
+        <a  onclick="return confirm('Are You sure ?') " href="{{ route('admin.roles.delete_all') }}" class="btn btn-danger "><i class="fas fa-times"> </i>{{ __('site.Delete All') }}</a>
 
 @stop

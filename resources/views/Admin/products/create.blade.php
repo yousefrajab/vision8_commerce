@@ -12,8 +12,11 @@
 @csrf
 
 @include('Admin.products._form')
+<div class="text-center mt-4">
 
-<button class="btn btn-success px-5">Add</button>
+    <button class="btn btn-success px-5">{{ __('site.Add') }}</button>
+
+</div>
 </form>
 @stop
 

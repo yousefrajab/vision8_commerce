@@ -33,9 +33,13 @@ class NewOrder extends Notification
     public function via($notifiable)
     {
         // $notification_channel = 'mail , database , boradcast';
-        $notification_channel = 'database,broadcast,vonage ';
-        $channels = explode(',', $notification_channel);
-        return $channels;
+        // $notification_channel = 'database,broadcast,vonage ';
+        // $channels = explode(',', $notification_channel);
+
+        $notification_channel ='vonage';
+        $channels = explode(',' ,$notification_channel);
+        // return ['vonage'];
+             return $channels;
     }
 
     /**
@@ -54,7 +58,8 @@ class NewOrder extends Notification
     public function toVonage($notifiable)
 {
     return (new VonageMessage)
-                ->content('hello this is test message');
+                // ->content('مرحبا معك الدعم الفني')->unicode();
+                ->content('Hello');
 }
     // public function toDatabase()
     // {

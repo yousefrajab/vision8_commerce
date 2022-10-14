@@ -9,16 +9,16 @@
     <table class="table table-borderd table-hover">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Image</th>
+                <th>{{ __('site.ID') }}</th>
+                <th>{{ __('site.Name') }}</th>
+                <th>{{ __('site.Image') }}</th>
                 {{-- <th>Content</th> --}}
-                <th>Price</th>
-                <th>Sale Price</th>
-                <th>Quantity</th>
-                <th>Category</th>
-                <th>Created At</th>
-                <th>Actions</th>
+                <th>{{ __('site.Price') }}</th>
+                <th>{{ __('site.Sale Price') }}%</th>
+                <th>{{ __('site.Quantity') }}</th>
+                <th>{{ __('site.Category') }}</th>
+                <th>{{ __('site.Created At') }}</th>
+            <th>{{ __('site.Actions') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -30,7 +30,7 @@
                     </td>
                     {{-- <td>{{ $product->trans_content }}</td> --}}
                     <td>{{ $product->price }}</td>
-                    <td>{{ $product->sale_price }}</td>
+                    <td>{{ $product->sale_price }}%</td>
                     <td>{{ $product->quantity }}</td>
                     <td>{{ $product->category->trans_name }}</td>
                     <td>{{ $product->created_at ? $product->created_at->diffForHumans() : '' }}</td>

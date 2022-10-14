@@ -11,6 +11,8 @@ return [
     'All Products'=>'Tous les produits',
     'Add New Product'=>'Ajouter un nouveau produit',
     'Create New Product'=>'Créer un nouveau produit',
+    'Create New User'=>'Créer un nouvel utilisateur',
+
     'Edit Product'=>'Modifier le produit',
     'orders'=>'Ordres',
     'payments'=>'Paiements',
@@ -19,20 +21,53 @@ return [
     'Roles'=>'Les rôles',
     'All Roles'=>'Tous les rôles',
     'Add New Role'=>'Ajouter un nouveau rôle',
+    'Add New User'=>'Ajouter un nouvel utilisateur',
+
     'Earnings (Monthly)'=>'Gains (mensuels)',
     'Earnings (Annual)'=>'Gains (annuels)',
     'Trash'=>'Poubelle',
     'Trashed Role'=>'Rôle supprimé',
     'Trashed Categories'=>'Catégories supprimées',
     'Trashed Products'=>'Produits jetés',
+    'Trashed Users'=>'Utilisateurs supprimés',
+
     'Restore All'=>'Tout restaurer',
     'Delete All'=>'Supprimer tout',
     'ID'=>'IDENTIFIANT',
     'Name'=>'Nom',
     'Actions'=>'Actions',
     'Select All'=>'Tout sélectionner',
+    'Select'=>'Sélectionner',
     'Add'=>'Ajouter',
     'Edit Role'=>'Modifier le rôle',
-    'Updated'=>'Actualisé'
+    'Updated'=>'Actualisé',
+    'Created At'=>'Créé à',
+    'Deleted At'=>'Supprimé à',
+
+    'Parent'=>'Parente',
+    'Image'=>'Image',
+    'Enter Image'=>'Entrez Image',
+    'Album'=>'Album',
+
+    'English Name'=>'Nom anglais',
+    'Arabic Name'=>'Nom arabe',
+    'French Name'=>'Nom français',
+    'Enter English Name'=>'Entrez le nom anglais',
+    'Enter Arabic Name'=>'Entrez le nom arabe',
+    'Enter French Name'=>'Entrez le nom français',
+    'English Content'=>'Contenu en anglais',
+    'Arabic Content'=>'Contenu en arabe',
+    'French Content'=>'Contenu en français',
+    'Enter English Content'=>'Entrez le Contenu en anglais',
+    'Enter Arabic Content'=>'Entrez le Contenu en arabe',
+    'Enter French Content'=>'Entrez le Contenu en français',
+    'Email'=>'E-mail',
+    'Password'=>'Mot de passe',
+
+    'Price'=>'Prix',
+    'Sale Price'=>'Prix ​​de vente',
+    'Quantity'=>'Quantité',
+    'Category'=>'Catégorie',
+
 
 ];

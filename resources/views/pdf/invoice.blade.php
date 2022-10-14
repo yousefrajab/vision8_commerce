@@ -39,14 +39,14 @@
             <div class="span4">
                 {{-- {!! QrCode::format('png')->size(150)->generate('yousef buy '); !!} --}}
                 <img
-                    src="data:image/png;base64, {{ base64_encod(
-                        QrCode::format('png')->size(100)->generate('yousef buy '),
+                    src="data:image/png;base64, {{ base64_encode(
+                        QrCode::format('png')->size(100)->generate('Yousef buy'),
                     ) }}" />
                 <address>
-                    <strong>Webivorous Web services Pvt. Ltd.</strong><br>
+                    <strong>Website E_commarce</strong><br>
 
-                    35, Lajpat Nagar<br>
-                    Gurugram, Haryana-122001 (India)
+                    35, {{ $order->user->name}}<br>
+                    Palestine, Gaza-432000 (Gaza)
                 </address>
             </div>
             <div class="span4 well">

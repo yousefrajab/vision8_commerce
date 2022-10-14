@@ -18,36 +18,36 @@
     @csrf
 
     <div class="mb-3">
-        <label>English Name</label>
-        <input type="text" name="name_en" placeholder="English Name" class="form-control" />
+        <label>{{ __('site.English Name') }}</label>
+        <input type="text" name="name_en" placeholder="{{ __('site.Enter English Name') }}" class="form-control" />
     </div>
 
     <div class="mb-3">
-        <label>Arabic Name</label>
-        <input type="text" name="name_ar" placeholder="Arabic Name" class="form-control" />
+        <label>{{ __('site.Arabic Name') }}</label>
+        <input type="text" name="name_ar" placeholder="{{ __('site.Enter Arabic Name') }}" class="form-control" />
     </div>
 
     <div class="mb-3">
-        <label>French Name</label>
-        <input type="text" name="name_fr" placeholder="French Name" class="form-control" />
+        <label>{{ __('site.French Name') }}</label>
+        <input type="text" name="name_fr" placeholder="{{ __('site.Enter French Name') }}" class="form-control" />
     </div>
 
     <div class="mb-3">
-        <label for="image">Image</label>
+        <label for="image">{{ __('site.Image') }}</label>
         <input type="file" id="image" name="image" class="form-control" />
     </div>
 
     <div class="mb-3">
-        <label>Parent</label>
+        <label>{{ __('site.Parent') }}</label>
         <select name="parent_id" class="form-control">
-            <option value="">Select</option>
+            <option value="">{{ __('site.Select') }}</option>
             @foreach ($categories as $category)
                 <option value="{{ $category->id }}">{{ $category->Trans_name }}</option>
             @endforeach
         </select>
     </div>
 
-    <button class="btn btn-success px-5">Add</button>
+    <button class="btn btn-success px-5">{{ __('site.Add') }}</button>
 
 
 </form>

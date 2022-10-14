@@ -31,7 +31,6 @@ trait Trans
 
         return $this->name;
     }
-
     public function getNameFrAttribute()
     {
         if($this->name) {
@@ -41,16 +40,18 @@ trait Trans
         return $this->name;
     }
 
+
+
     // protected function nameAr(): Attribute
     // {
     //     return Attribute::make(
     //         get: fn () => json_decode($this->name, true)['ar']
     //     );
     // }
-    // protected function nameEn(): Attribute
+    // protected function nameFr(): Attribute
     // {
     //     return Attribute::make(
-    //         get: fn () => json_decode($this->name, true)['en']
+    //         get: fn () => json_decode($this->name, true)['fr']
     //     );
     // }
 

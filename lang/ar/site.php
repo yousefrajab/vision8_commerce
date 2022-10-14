@@ -10,6 +10,7 @@ return [
     'Edit Category'=>'تعديل قسم',
     'Products'=>'المنتجات',
     'Create New Product'=>'انشاء منتج جديد',
+    'Create New User'=>'انشاء مشترك جديد',
     'All Products'=>' جميع المنتجات',
     'Add New Product'=>' اضافة منتج جديد',
     'Edit Product'=>'تعديل منتج ',
@@ -20,12 +21,14 @@ return [
     'Roles'=>'الصلاحيات',
     'All Roles'=>'جميع الصلاحيات',
     'Add New Role'=>'اضافة صلاحية جديد',
+    'Add New User'=>'اضافة مشترك جديد',
     'Earnings (Monthly)'=>'أرباح(شهرية)',
     'Earnings (Annual)'=>'أرباح(سنوية)',
     'Trash'=>'سلة المهملات',
     'Trashed Role'=>'سلة مهملات الصلاحيات',
     'Trashed Categories'=>'سلة مهملات الأقسام',
     'Trashed Products'=>'سلة مهملات المنتجات',
+    'Trashed Users'=>'سلة مهملات المشتركين',
 
     'Restore All'=>'استعادة الكل',
     'Delete All'=>'حذف الكل',
@@ -33,9 +36,38 @@ return [
     'Name'=>'الاسم',
     'Actions'=>'الاحداث',
     'Select All'=>'اختار الكل',
+    'Select'=>'اختار',
+
     'Add'=>'اضافة',
     'Edit Role'=>'تعديل صلاحية',
-    'Updated'=>'تحديث'
+    'Updated'=>'تحديث',
+    'Created At'=>'أنشئت منذ',
+    'Deleted At'=>'حذفت منذ',
+
+    'Parent'=>'الابوين',
+    'Image'=>'صورة',
+    'Enter Image'=>'ادخل صورة',
+    'Album'=>'الالبوم',
+    'English Name'=>'الاسم الانجليزي',
+    'Enter English Name'=>'ادخل الاسم الانجليزي',
+    'English Content'=>'المحتوى الانجليزي',
+    'Arabic Name'=>'الاسم العربي',
+    'Enter Arabic Name'=>'ادخل الاسم العربي',
+    'Arabic Content'=>'المحتوى العربي',
+    'Email'=>'ايميل',
+    'Password'=>'كلمة المرور',
+    'French Name'=>'الاسم الفرنسي',
+    'Enter French Name'=>'ادخل الاسم الفرنسي',
+    'French Content'=>'المحتوى الفرنسي',
+    'Enter English Content'=>'ادخل المحتوى الانجليزي',
+    'Enter Arabic Content'=>'ادخل المحتوى العربي',
+    'Enter French Content'=>'ادخل المحتوى الفرنسي',
+
+    'Price'=>'السعر',
+    'Sale Price'=>'خصم البيع',
+    'Quantity'=>'الكمية',
+    'Category'=>'القسم',
+
 
 
 

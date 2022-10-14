@@ -244,7 +244,7 @@ use App\Models\Category;
                             </a>
                         </li>
                         <li>
-                            <a href="https://www.instagram.com/themefisher">
+                            <a href="https://instagram.com/yousef.__.jou?igshid=YmMyMTA2M2Y=">
                                 <i class="tf-ion-social-instagram"></i>
                             </a>
                         </li>

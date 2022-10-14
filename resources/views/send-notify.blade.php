@@ -12,15 +12,15 @@
         @endforeach --}}
 
       {{-- </div> --}}
-      <div class="text-center mt-4">
+      {{-- <div class="text-center mt-4">
         <a href="{{route('Read_notify') }}" class="btn btn-main ">Go to Read-Notify</a>
-    </div>
+    </div> --}}
 </div>
   <br>
   <br>
 @stop
 
-@section('scripts')
+{{-- @section('scripts')
 <script>
 setTimeout(() => {
     window.location.href ='/read_notify';
@@ -28,5 +28,5 @@ setTimeout(() => {
 
 
 </script>
-@stop
+@stop --}}
 

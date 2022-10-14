@@ -15,12 +15,12 @@
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Image</th>
-            <th>Parent</th>
-            <th>Created At</th>
-            <th>Actions</th>
+            <th>{{ __('site.ID') }}</th>
+            <th>{{ __('site.Name') }}</th>
+            <th>{{ __('site.Image') }}</th>
+            <th>{{ __('site.Parent') }}</th>
+            <th>{{ __('site.Created At') }}</th>
+            <th>{{ __('site.Actions') }}</th>
         </tr>
     </thead>
     <tbody>

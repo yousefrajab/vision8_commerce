@@ -17,23 +17,24 @@
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800">{{ __('site.Trashed Products') }}</h1>
 
-    @if (session('msgg'))
+    @if (session('msg'))
         <div class="alert alert-{{ session('type') }}">
-            {{ session('msgg') }}
+            {{ session('msg') }}
         </div>
     @endif
 
     <table class="table table-bordered table-striped table-hover">
         <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Image</th>
-            <th>Price</th>
-            <th>Sale Price</th>
-            <th>Quantity</th>
-            <th>Category</th>
-            <th>Deleted At</th>
-            <th>Actions</th>
+            <th>{{ __('site.ID') }}</th>
+                <th>{{ __('site.Name') }}</th>
+                <th>{{ __('site.Image') }}</th>
+                {{-- <th>Content</th> --}}
+                <th>{{ __('site.Price') }}</th>
+                <th>{{ __('site.Sale Price') }}%</th>
+                <th>{{ __('site.Quantity') }}</th>
+                <th>{{ __('site.Category') }}</th>
+                <th>{{ __('site.Deleted At') }}</th>
+            <th>{{ __('site.Actions') }}</th>
         </tr>
         <tbody>
             @foreach ($products as $product)
@@ -49,8 +50,8 @@
                     <td>{{ $product->category->trans_name }}</td>
                     <td>{{ $product->deleted_at ? $product->deleted_at->diffForHumans() : '' }}</td>
                     <td>
-                        <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-sm btn-primary"><i
-                                class="fas fa-edit"></i></a>
+                        <a class="btn btn-sm btn-primary" href="{{ route('admin.products.restore', $product->id) }}"><i
+                            class="fas fa-undo"></i></a>
                         <form class="d-inline" action="{{ route('admin.products.destroy', $product->id) }}" method="POST">
                             @csrf
                             @method('delete')
@@ -67,7 +68,7 @@
 
     </table>
     <a onclick="return confirm('Are You sure ?') " href="{{ route('admin.products.restore_all') }}" class="btn btn-success"> <i
-            class="fas fa-undo"> </i>Restore All</a>
+            class="fas fa-undo"> </i>{{ __('site.Restore All') }}</a>
     <a onclick="return confirm('Are You sure ?') " href="{{ route('admin.products.delete_all') }}" class="btn btn-danger "><i
-            class="fas fa-times"> </i>Delete All</a>
+            class="fas fa-times"> </i>{{ __('site.Delete All') }}</a>
 @stop

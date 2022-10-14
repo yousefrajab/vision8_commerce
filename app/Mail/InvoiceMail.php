@@ -31,6 +31,6 @@ class InvoiceMail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.invoice')->attach(public_path('inoices/'.$this->invname));
+        return $this->view('emails.invoice')->attach(public_path('invoices/'.$this->invname));
     }
 }

@@ -13,7 +13,7 @@
 @method('put')
 @include('Admin.products._form')
 <div class="text-center mb-3">
-    <button class="btn btn-success px-5">Update</button>
+    <button class="btn btn-success px-5">{{ __('site.Updated') }}</button>
 </div>
 
 </form>

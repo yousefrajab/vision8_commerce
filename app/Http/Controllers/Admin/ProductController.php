@@ -241,7 +241,7 @@ class ProductController extends Controller
     {
         Product::onlyTrashed()->find($id)->restore();
 
-        return redirect()->route('admin.products.trash')->with('msgg', 'Product restored successfully')->with('type', 'warning');
+        return redirect()->route('admin.products.trash')->with('msg', 'Product restored successfully')->with('type', 'warning');
     }
 
     public function forcedelete($id)
@@ -254,18 +254,18 @@ class ProductController extends Controller
         // File::delete(public_path('uploads/products/'. $product->image));
         $product->forcedelete();
 
-        return redirect()->route('admin.products.trash')->with('msgg', 'Product deleted permanintly successfully')->with('type', 'danger');
+        return redirect()->route('admin.products.trash')->with('msg', 'Product deleted permanintly successfully')->with('type', 'danger');
     }
 
     public function restore_all()
     {
         Product::onlyTrashed()->restore();
-        return redirect()->route('admin.products.index')->with('msgg', 'products restore successfully')->with('type', 'warning');
+        return redirect()->route('admin.products.index')->with('msg', 'products restore successfully')->with('type', 'warning');
     }
 
     public function delete_all()
     {
         Product::onlyTrashed()->forcedelete();
-        return redirect()->route('admin.products.index')->with('msgg', 'products deleted successfully')->with('type', 'danger');
+        return redirect()->route('admin.products.index')->with('msg', 'products deleted successfully')->with('type', 'danger');
     }
 }

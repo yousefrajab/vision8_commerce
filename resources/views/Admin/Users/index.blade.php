@@ -2,18 +2,20 @@
 @section('title', 'User | ' . env('APP_NAME'))
 @section('content')
     <h1 class="h3 mb-4 text-gray-800">{{ __('site.All Users') }}</h1>
+
     @if (session('msg'))
         <div class="alert alert-{{ session('type') }}">{{ session('msg') }}
         </div>
     @endif
+
     <table class="table table-borderd table-hover">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Created At</th>
-                <th>Actions</th>
+                <th>{{ __('site.ID') }}</th>
+                <th>{{ __('site.Name') }}</th>
+                <th>{{ __('site.Email') }}</th>
+                <th>{{ __('site.Created At') }}</th>
+            <th>{{ __('site.Actions') }}</th>
             </tr>
         </thead>
         <tbody>

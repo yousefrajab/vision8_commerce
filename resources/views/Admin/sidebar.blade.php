@@ -41,7 +41,7 @@
                 {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
                 <a class="collapse-item {{ request()->routeIs('admin.categories.index')? 'active': '' }}" href="{{ route('admin.categories.index') }}">{{ __('site.All Categories') }}</a>
                 <a class="collapse-item {{ request()->routeIs('admin.categories.create')? 'active': '' }}" href="{{ route('admin.categories.create') }}">{{ __('site.Add New Category') }}</a>
-                <a class="collapse-item" href="{{ route('admin.categories.trash') }}">{{ __('site.Trashed Categories') }}</a>
+                <a class="collapse-item" href="{{ route('admin.categories.trash') }}">{{ trans('site.Trashed Categories') }}</a>
             </div>
         </div>
     </li>
@@ -66,7 +66,7 @@
                 {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
                 <a class="collapse-item {{ request()->routeIs('admin.products.index')? 'active': '' }}" href="{{ route('admin.products.index') }}">{{ __('site.All Products') }}</a>
                 <a class="collapse-item {{ request()->routeIs('admin.products.create')? 'active': '' }}" href="{{ route('admin.products.create') }}">{{ __('site.Add New Product') }}</a>
-                <a class="collapse-item" href="{{ route('admin.products.trash') }}">{{ __('site.Trashed Products') }}</a>
+                <a class="collapse-item" href="{{ route('admin.products.trash') }}">@lang('site.Trashed Products')</a>
             </div>
         </div>
     </li>
@@ -89,11 +89,29 @@
 
     <hr class="sidebar-divider my-0">
 
-    <li class="nav-item {{ request()->routeIs('admin.users.index') ? 'active' : ''}}">
+    {{-- <li class="nav-item {{ request()->routeIs('admin.users.index') ? 'active' : ''}}">
         <a class="nav-link" href="{{ route('admin.users.index') }}">
             <i class="fas fa-fw fa-users"></i>
-            <span>{{ __('site.users') }}</span></a>
-    </li>
+            <span>{{ __('site.users') }}</span></a> --}}
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsUser"
+                    aria-expanded="true" aria-controls="collapsUser">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>{{ __('site.users') }}</span>
+                </a>
+                <div id="collapsUser" class="collapse {{ str_contains(request()->url(),'users') ? 'show' :'' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
+                        <a class="collapse-item {{ request()->routeIs('admin.users.index')? 'active': '' }}" href="{{ route('admin.users.index') }}">{{ __('site.All Users') }}</a>
+                        <a class="collapse-item {{ request()->routeIs('admin.users.create')? 'active': '' }}" href="{{ route('admin.users.create') }}">{{ __('site.Add New User') }}</a>
+                        <a class="collapse-item" href="{{ route('admin.users.trash') }}">{{ __('site.Trashed Users') }}</a>
+
+                    </div>
+                </div>
+            </li>
+
+    {{-- </li> --}}
 
     <hr class="sidebar-divider my-0">
     <li class="nav-item">

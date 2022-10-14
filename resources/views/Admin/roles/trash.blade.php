@@ -27,12 +27,14 @@
     <tr>
         <th>{{ __('site.ID') }}</th>
         <th>{{ __('site.Name') }}</th>
+        <th>{{ __('site.Deleted At') }}</th>
         <th>{{ __('site.Actions') }}</th>
     </tr>
     @foreach ($roles as $role)
     <tr>
         <td>{{ $role->id }}</td>
         <td>{{ $role->name }}</td>
+        <td>{{ $role->deleted_at ? $role->deleted_at->diffForHumans() : '' }}</td>
 
         <td>
             <a class="btn btn-sm btn-primary" href="{{ route('admin.roles.restore', $role->id) }}"><i class="fas fa-undo"></i></a>

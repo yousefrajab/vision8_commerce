@@ -64,6 +64,8 @@
 
      </style>
     @endif
+
+
      <style>
         .table td,
         .table th{
@@ -119,7 +121,9 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
                                 <i class="fas fa-fw fa-language mx-1"></i>
+
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Languages ({{ app()->currentlocale() }})</span>
 
                             </a>

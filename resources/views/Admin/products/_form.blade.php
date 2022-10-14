@@ -38,27 +38,27 @@ background:#333;
 <div class="row">
     <div class="col-md-6">
     <div class="mb-3">
-        <label>English Name</label>
-        <input type="text" placeholder="English Name" name="name_en" class="form-control" value="{{ $product->name_en }}" />
+        <label>{{ __('site.English Name') }}</label>
+        <input type="text" placeholder="{{ __('site.Enter English Name') }}" name="name_en" class="form-control" value="{{ $product->name_en }}" />
     </div>
 </div>
 
 <div class="col-md-6">
     <div class="mb-3">
-        <label>Arabic Name</label>
-        <input type="text" placeholder="Arabic Name" name="name_ar" class="form-control" value="{{ $product->name_ar}}"/>
+        <label>{{ __('site.Arabic Name') }}</label>
+        <input type="text" placeholder="{{ __('site.Enter Arabic Name') }}" name="name_ar" class="form-control" value="{{ $product->name_ar}}"/>
     </div>
 </div>
 <div class="col-md-6">
     <div class="mb-3">
-        <label>French Name</label>
-        <input type="text" name="name_fr" placeholder="French Name" class="form-control " value="{{ $product->name_fr}}" />
+        <label>{{ __('site.French Name') }}</label>
+        <input type="text" name="name_fr" placeholder="{{ __('site.Enter French Name') }}" class="form-control " value="{{ $product->name_fr}}" />
     </div>
 </div>
 
 </div>
 <div class="mb-3">
-    <label for="image">Image</label>
+    <label for="image">{{ __('site.Enter Image') }}</label>
     <input id="image" type="file" name="image" class="form-control" />
     @if ($product->image)
     <img width="80" src="{{ asset('uploads/products/'. $product->image) }}" alt="">
@@ -66,7 +66,7 @@ background:#333;
 
 </div>
 <div class="mb-3">
-    <label>Album</label>
+    <label>{{ __('site.Album') }}</label>
     <input type="file" name="album[]" multiple class="form-control" />
     <div class="album">
         @foreach($product->album as $img)
@@ -80,44 +80,44 @@ background:#333;
 {{-- //multiple => حتى يختار اكثر من صورة لمن اضغط كوترل --}}
 
 <div class="mb-3">
-    <label>English Content</label>
-    <textarea placeholder="English Content" name="content_en" class="myeditor" value="{{ $product->content_en}}" ></textarea>
+    <label>{{ __('site.English Content') }}</label>
+    <textarea placeholder="{{ __('site.Enter English Content') }}" name="content_en" class="myeditor" value="{{ $product->content_en}}" ></textarea>
 </div>
 <div class="mb-3">
-    <label>Arabic Content</label>
-    <textarea placeholder="Arabic Content" name="content_ar" class="myeditor" value="{{ $product->content_ar}}"></textarea>
+    <label>{{ __('site.Arabic Content') }}</label>
+    <textarea placeholder="{{ __('site.Enter Arabic Content') }}" name="content_ar" class="myeditor" value="{{ $product->content_ar}}"></textarea>
 </div>
 
 <div class="mb-3">
-    <label>French Content</label>
-    <textarea placeholder="French Content" name="content_fr" class="myeditor" value="{{ $product->content_fr}}"></textarea>
+    <label>{{ __('site.French Content') }}</label>
+    <textarea placeholder="{{ __('site.Enter French Content') }}" name="content_fr" class="myeditor" value="{{ $product->content_fr}}"></textarea>
 </div>
 
 <div class="row">
 <div class="col-md-4">
     <div class="mb-3">
-        <label>Price</label>
-        <input type="text" placeholder="Price" name="price" class="form-control" value="{{ $product->price}}" />
+        <label>{{ __('site.Price') }}</label>
+        <input type="text" placeholder="{{ __('site.Price') }}" name="price" class="form-control" value="{{ $product->price}}" />
     </div>
 </div>
 <div class="col-md-4">
     <div class="mb-3">
-        <label>Sale Price</label>
-        <input type="text" placeholder="Sale Price" name="sale_price" class="form-control" value="{{ $product->sale_price}}"/>
+        <label>{{ __('site.Sale Price') }}%</label>
+        <input type="text" placeholder="{{ __('site.Sale Price') }}" name="sale_price" class="form-control" value="{{ $product->sale_price}}"/>
     </div>
 </div>
 
 <div class="col-md-4">
     <div class="mb-3">
-        <label>Quantity</label>
-        <input type="text" placeholder="Quantity" name="quantity" class="form-control" value="{{ $product->quantity}}" />
+        <label>{{ __('site.Quantity') }}</label>
+        <input type="text" placeholder="{{ __('site.Quantity') }}" name="quantity" class="form-control" value="{{ $product->quantity}}" />
     </div>
 </div>
 </div>
 <div class="mb-3">
-    <label>Category</label>
+    <label>{{ __('site.Category') }}</label>
     <select name="category_id" class="form-control">
-       <option value="">Select</option>
+       <option value="">{{ __('site.Select') }}</option>
        @foreach ($categories as $item )
         <option @selected($product->category_id == $item->id) value="{{ $item->id }}
             ">{{ $item->trans_name }}</option>

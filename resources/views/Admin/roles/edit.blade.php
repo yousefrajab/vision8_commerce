@@ -21,11 +21,11 @@
     @method('put')
 
     <div class="mb-3">
-        <label>Name</label>
+        <label>{{ __('site.Name') }}</label>
         <input type="text" name="name" placeholder="Name" class="form-control" value="{{ $role->name }}" />
     </div>
 
-    <label><input type="checkbox" id="check_all"> Select All</label> <br>
+    <label><input type="checkbox" id="check_all">{{ __('site.Select All') }} </label> <br>
     <ul class="list-unstyled">
         @foreach ($abilities as $ability)
             <li><label><input {{ $role->abilities->find($ability->id) ? 'checked' : '' }} type="checkbox" name="ability[]" value="{{ $ability->id }}"> {{ $ability->name }}</label></li>

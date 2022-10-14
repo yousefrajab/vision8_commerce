@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DropZoneController;
 use App\Http\Controllers\admin\rolecontroller;
 use App\Http\Controllers\ApiController;
+use App\Http\Controllers\testcontroller;
 use App\Models\Order;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -52,8 +53,18 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
 
         Route::get('
          delete-image/{id}', [ProductController::class, 'delete_image'])->name('products.delete_image');
-        route::get('users', [UserController::class, 'index'])->name('users.index');
-        route::delete('users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+        // route::get('users', [UserController::class, 'index'])->name('users.index');
+        Route::get('users/trash', [UserController::class, 'trash'])->name('users.trash');
+
+        Route::get('users/{id}/forcedelete', [UserController::class, 'forcedelete'])->name('users.forcedelete');
+        Route::get('users/{id}/restore', [UserController::class, 'restore'])->name('users.restore');
+        Route::get('users/restore-all', [UserController::class, 'restore_all'])->name('users.restore_all');
+        Route::get('users/delete-all', [UserController::class, 'delete_all'])->name('users.delete_all');
+        // route::delete('users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+        route::resource('users', UserController::class);
+        route::get('indexx',[testcontroller::class ,'indexx'])->name('indexx');
+
+
     });
     Auth::routes(['verify' => true]);
 
@@ -95,3 +106,5 @@ Route::get('/dropzone', [DropZoneController::class, 'dropzone']);
 Route::post('/dropzone-store', [DropZoneController::class, 'dropzoneStore'])->name('dropzone.store');
 
 //sitroutes
+
+

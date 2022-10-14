@@ -154,7 +154,8 @@ class CartController extends Controller
             }
 
             //send invoice
-            $invname = rand().rand().'.pdf';             Pdf::loadView('pdf.invoice', ['order' => $order])->save('invoices/'.$invname);
+            $invname = rand().rand().'.pdf';
+                      Pdf::loadView('pdf.invoice', ['order' => $order])->save('invoices/'.$invname);
             Mail::to(Auth()->user()->email)->send(new InvoiceMail(Auth::user()->name,$invname));
             // echo 'Done';
 

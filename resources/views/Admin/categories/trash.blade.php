@@ -25,11 +25,12 @@
 
     <table class="table table-bordered table-striped table-hover">
         <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Image</th>
-            <th>Parent</th>
-            <th>Actions</th>
+            <th>{{ __('site.ID') }}</th>
+            <th>{{ __('site.Name') }}</th>
+            <th>{{ __('site.Image') }}</th>
+            <th>{{ __('site.Parent') }}</th>
+            <th>{{ __('site.Deleted At') }}</th>
+            <th>{{ __('site.Actions') }}</th>
         </tr>
         @foreach ($categories as $category)
             <tr>
@@ -37,7 +38,7 @@
                 <td>{{ $category->trans_name }}</td>
                 <td><img width="80" src="{{ asset('uploads/categories/'.$category->image) }}" alt=""></td>
                 <td>{{ $category->parent->trans_name }}</td>
-                {{-- <td>{{ $category->created_at ? $category->created_at->diffForHumans() : '' }}</td> --}}
+                <td>{{ $category->deleted_at ? $category->deleted_at->diffForHumans() : '' }}</td>
 
                 <td>
                     <a class="btn btn-sm btn-primary" href="{{ route('admin.categories.restore', $category->id) }}"><i
